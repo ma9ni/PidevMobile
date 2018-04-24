@@ -13,6 +13,7 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
+import com.esprit.gui.users.AffichageProfessionnel;
 import com.esprit.gui.users.AjouterFs;
 
 /**
@@ -41,7 +42,9 @@ public class Bar {
         tb.addMaterialCommandToSideMenu("Proffessionel", FontImage.MATERIAL_MONEY_OFF, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                hi.show();
+                //hi.show();
+                AffichageProfessionnel aj = new AffichageProfessionnel();
+                aj.getHi().show();
             }
         });
         tb.addMaterialCommandToSideMenu("Produits", FontImage.MATERIAL_HOME, new ActionListener() {

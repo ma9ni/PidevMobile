@@ -10,7 +10,7 @@ package com.esprit.entities;
  * @author user
  */
 public class User {
-    
+
     private int id;
     private String username;
     private String username_canonical;
@@ -31,8 +31,6 @@ public class User {
     public User() {
     }
 
-    
-    
     public User(String username, String email, String pasword, String image, String adresse, String gouvernorat) {
         this.username = username;
         this.email = email;
@@ -169,9 +167,10 @@ public class User {
     public void setLast_login(String last_login) {
         this.last_login = last_login;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", username=" + username + ", username_canonical=" + username_canonical + ", email_canonical=" + email_canonical + ", email=" + email + ", enabled=" + enabled + ", pasword=" + pasword + ", num_tel=" + num_tel + ", confirmation=" + confirmation + ", image=" + image + ", adresse=" + adresse + ", gouvernorat=" + gouvernorat + ", note=" + note + ", password_requested_at=" + password_requested_at + ", confirmation_token=" + confirmation_token + ", last_login=" + last_login + '}';
+    }
+
 }
