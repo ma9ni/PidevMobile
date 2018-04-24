@@ -90,4 +90,24 @@ public class FicheDeSoin {
         this.etat = etat;
     }
 
+    public FicheDeSoin() {
+    }
+
+    public FicheDeSoin(int id, int id_membre, String observation, String medicament, Date prochainRDV, int id_animal, Date dateCreation, int etat) {
+        this.id = id;
+        this.id_membre = id_membre;
+        this.observation = observation;
+        this.medicament = medicament;
+        this.prochainRDV = prochainRDV;
+        this.id_animal = id_animal;
+        this.dateCreation = dateCreation;
+        this.etat = etat;
+    }
+
+    @Override
+    public String toString() {
+        return "FicheDeSoin{" + "id=" + id + ", id_membre=" + id_membre + ", observation=" + observation + ", medicament=" + medicament + ", prochainRDV=" + prochainRDV + ", id_animal=" + id_animal + ", dateCreation=" + dateCreation + ", etat=" + etat + ", formater=" + formater + '}';
+    }
+    
+
 }
