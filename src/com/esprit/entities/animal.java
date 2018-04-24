@@ -30,6 +30,7 @@ public class animal {
 
     public int getId() {
         return id;
+        //hhhh
     }
 
     public void setId(int id) {
