@@ -30,7 +30,7 @@ public class AffichageProfessionnel extends Bar {
     public AffichageProfessionnel() {
         super();
         this.hi.setTitle("Liste Des Professionels");
-        lb = new SpanLabel("aaaaaaaaaaaaaaaaaa");
+        lb = new SpanLabel("aaaaaaahmeeeedaaaaaa");
 
         // lb.setText(""+serviceTask.getList2().get(0).getIdAdoption());
         UsersServices serviceTask = new UsersServices();
