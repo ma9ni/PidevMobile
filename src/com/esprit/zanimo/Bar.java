@@ -13,7 +13,10 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
+import com.esprit.entities.animal;
+import com.esprit.gui.animal.affichergui;
 import com.esprit.gui.users.AjouterFs;
+import com.esprit.services.animal.animalservices;
 
 /**
  *
@@ -60,6 +63,14 @@ public class Bar {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 hi.show();
+            }
+        });
+        
+                tb.addMaterialCommandToSideMenu("animal", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                affichergui aj = new affichergui();
+                aj.getHi().show();
             }
         });
     }
