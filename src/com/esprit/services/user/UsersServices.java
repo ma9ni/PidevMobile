@@ -115,6 +115,7 @@ public class UsersServices {
                 // System.out.println(obj.get("id"));
                 // float id = Float.parseFloat(obj.get("id").toString());
                 String nomevnt = obj.get("gouvernorat").toString();
+                int numtel = Integer.parseInt(obj.get("numTel").toString());
                 /*  float nbp = Float.parseFloat(obj.get("nombredeplaces").toString());
                 float nbpr = Float.parseFloat(obj.get("nombredesplacesrestante").toString());
                 float tarif = Float.parseFloat(obj.get("tarifevenement").toString());
@@ -162,6 +163,7 @@ public class UsersServices {
                 System.out.println(id);
                  */
                 //  e.setId((int) id);
+                e.setNum_tel(numtel);
                 e.setGouvernorat(nomevnt);
                 e.setImage(img);
                 /*  e.setNombredeplaces((int)nbp);
@@ -191,7 +193,7 @@ public class UsersServices {
 
     public ArrayList<User> getList2() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/veterinaires");
+        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/usersmobile");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

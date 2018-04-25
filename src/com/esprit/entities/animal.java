@@ -8,24 +8,22 @@ package com.esprit.entities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 /**
  *
  * @author salah
  */
 public class animal {
-     private int id;
+
+    private int id;
     private int id_membre;
-     private String nom ;
+    private String nom;
     private String nomproprietaire;
-         private String description;
-          private String  sexe;
-          private Date datedenaissance;
-           private String race;
-           private String image;
-           
-           
-           
+    private String description;
+    private String sexe;
+    private Date datedenaissance;
+    private String race;
+    private String image;
+
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 
     public int getId() {
@@ -113,8 +111,5 @@ public class animal {
     public String toString() {
         return "animal{" + "id=" + id + ", id_membre=" + id_membre + ", nom=" + nom + ", nomproprietaire=" + nomproprietaire + ", description=" + description + ", sexe=" + sexe + ", datedenaissance=" + datedenaissance + ", race=" + race + ", image=" + image + ", formater=" + formater + '}';
     }
-    
-    
-          
-    
+
 }

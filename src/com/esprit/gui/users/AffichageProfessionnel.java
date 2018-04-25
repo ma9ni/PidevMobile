@@ -49,11 +49,13 @@ public class AffichageProfessionnel extends Bar {
             Image i = (URLImage.createToStorage(enc, t.getGouvernorat(), "http://localhost/pi_dev-master/web/uploads/images/" + t.getImage() + "", URLImage.RESIZE_SCALE));
 
             ImageViewer img2 = new ImageViewer(i.fill(120, 130));
-            Container C2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+            Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
             Label l = new Label(t.getGouvernorat());
+            Label lnu = new Label("" + t.getNum_tel());
 
             C2.add(l);
+            C2.add(lnu);
             C1.add(img2);
             C1.add(C2);
             C1.setLeadComponent(l);
