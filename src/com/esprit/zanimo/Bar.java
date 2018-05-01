@@ -15,7 +15,8 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.esprit.entities.animal;
 import com.esprit.gui.animal.affichergui;
-import com.esprit.gui.concours.concoursGUI;
+import com.esprit.gui.concours.AjouterConcours;
+import com.esprit.gui.concours.AffichageConcours;
 
 import com.esprit.gui.users.AffichageProfessionnel;
 import com.esprit.gui.users.AjouterFs;
@@ -67,7 +68,7 @@ public class Bar {
         tb.addMaterialCommandToSideMenu("Concours", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                concoursGUI aj = new concoursGUI();
+                AffichageConcours aj = new AffichageConcours();
                 aj.getHi().show();
             }
         });
@@ -76,6 +77,14 @@ public class Bar {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 affichergui aj = new affichergui();
+                aj.getHi().show();
+            }
+        });
+
+        tb.addMaterialCommandToSideMenu("Ajouter concours", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                AjouterConcours aj = new AjouterConcours();
                 aj.getHi().show();
             }
         });

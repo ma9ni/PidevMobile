@@ -21,7 +21,7 @@ import java.util.Map;
  * @author salah
  */
 public class animalservices {
-    
+
     public void ajoutTask(animal an) {
         ConnectionRequest con = new ConnectionRequest();
         String Url = "http://41.226.11.243:10004/tasks/" + an.getNom() + "/" + an.getDescription();
@@ -53,7 +53,7 @@ public class animalservices {
 
             Map<String, Object> etudiants = j.parseJSON(new CharArrayReader(json.toCharArray()));
             System.out.println(etudiants);
-           
+
             List<Map<String, Object>> list = (List<Map<String, Object>>) etudiants.get("root");
 
             for (Map<String, Object> obj : list) {
@@ -67,7 +67,7 @@ public class animalservices {
                 e.setNom(obj.get("nom").toString());
                 e.setDescription(obj.get("description").toString());
 
-               // e.setNom(obj.get("name").toString());
+                // e.setNom(obj.get("name").toString());
                 System.out.println(e);
                 listEtudiants.add(e);
 
@@ -80,10 +80,10 @@ public class animalservices {
 
     }
     ArrayList<animal> listTasks = new ArrayList<>();
-    
-    public ArrayList<animal> getList2(){       
+
+    public ArrayList<animal> getList2() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://127.0.0.1/Symfony/pi_dev/web/app_dev.php/animal/");  
+        con.setUrl("http://127.0.0.1/Symfony/pi_dev/web/app_dev.php/animal/");
         con.addResponseListener((NetworkEvent evt) -> {
             animalservices ser = new animalservices();
             listTasks = ser.getListTask(new String(con.getResponseData()));
@@ -92,5 +92,4 @@ public class animalservices {
         return listTasks;
     }
 
-    
 }

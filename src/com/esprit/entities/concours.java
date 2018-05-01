@@ -5,6 +5,7 @@
  */
 package com.esprit.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -27,18 +28,7 @@ public class concours {
 
     private Date dateFin;
 
-    public concours(int id, String titre, String type, String race, int capacite, Date dateDebut, Date dateFin) {
-        this.id = id;
-        this.titre = titre;
-        this.type = type;
-        this.race = race;
-        this.capacite = capacite;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-    }
-
-    public concours() {
-    }
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 
     public int getId() {
         return id;
@@ -93,6 +83,19 @@ public class concours {
     }
 
     public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public concours() {
+    }
+
+    public concours(int id, String titre, String type, String race, int capacite, Date dateDebut, Date dateFin) {
+        this.id = id;
+        this.titre = titre;
+        this.type = type;
+        this.race = race;
+        this.capacite = capacite;
+        this.dateDebut = dateDebut;
         this.dateFin = dateFin;
     }
 
