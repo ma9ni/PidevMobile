@@ -27,8 +27,13 @@ public class User {
     private String password_requested_at;
     private String confirmation_token;
     private String last_login;
+    private String role;
 
     public User() {
+    }
+
+    public User(int id) {
+        this.id = id;
     }
 
     public User(String username, String email, String pasword, String image, String adresse, String gouvernorat) {
@@ -166,6 +171,14 @@ public class User {
 
     public void setLast_login(String last_login) {
         this.last_login = last_login;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

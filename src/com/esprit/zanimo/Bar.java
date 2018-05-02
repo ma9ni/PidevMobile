@@ -14,6 +14,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.esprit.entities.animal;
+import com.esprit.gui.FicheDeSoin.afficherFicheDeSoingui;
 import com.esprit.gui.animal.affichergui;
 
 import com.esprit.gui.users.AffichageProfessionnel;
@@ -69,11 +70,19 @@ public class Bar {
                 hi.show();
             }
         });
-        
-                tb.addMaterialCommandToSideMenu("animal", FontImage.MATERIAL_HOME, new ActionListener() {
+
+        tb.addMaterialCommandToSideMenu("animal", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 affichergui aj = new affichergui();
+                aj.getHi().show();
+            }
+        });
+
+        tb.addMaterialCommandToSideMenu("mes fiche de soin", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                afficherFicheDeSoingui aj = new afficherFicheDeSoingui();
                 aj.getHi().show();
             }
         });

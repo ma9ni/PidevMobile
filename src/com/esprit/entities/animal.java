@@ -107,6 +107,33 @@ public class animal {
         this.formater = formater;
     }
 
+    public animal() {
+    }
+
+    public animal(String nom, String nomproprietaire, String image) {
+        this.nom = nom;
+        this.nomproprietaire = nomproprietaire;
+        this.image = image;
+    }
+
+    public animal(int id, String nom, String description) {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+    }
+
+    public animal(int id, int id_membre, String nom, String nomproprietaire, String description, String sexe, Date datedenaissance, String race, String image) {
+        this.id = id;
+        this.id_membre = id_membre;
+        this.nom = nom;
+        this.nomproprietaire = nomproprietaire;
+        this.description = description;
+        this.sexe = sexe;
+        this.datedenaissance = datedenaissance;
+        this.race = race;
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "animal{" + "id=" + id + ", id_membre=" + id_membre + ", nom=" + nom + ", nomproprietaire=" + nomproprietaire + ", description=" + description + ", sexe=" + sexe + ", datedenaissance=" + datedenaissance + ", race=" + race + ", image=" + image + ", formater=" + formater + '}';
