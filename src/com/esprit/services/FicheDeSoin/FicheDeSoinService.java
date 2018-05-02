@@ -63,6 +63,8 @@ public class FicheDeSoinService {
         ArrayList<FicheDeSoin> listEtudiants = new ArrayList<>();
 
         try {
+
+            //55555
             System.out.println(json);
             JSONParser j = new JSONParser();
 
