@@ -49,7 +49,6 @@ public class afficherFicheDeSoingui extends Bar {
             ImageViewer img2 = new ImageViewer(i.fill(120, 130));
 
             Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-            SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 
             Label l = new Label("Medicament : " + t.getMedicament());
             Label nomanim = new Label("animal : " + t.getId_animal().getNom());
