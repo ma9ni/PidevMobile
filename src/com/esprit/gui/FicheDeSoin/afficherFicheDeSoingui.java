@@ -33,7 +33,7 @@ public class afficherFicheDeSoingui extends Bar {
     public afficherFicheDeSoingui() {
 
         super();
-        // SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
         FicheDeSoinService serviceTask = new FicheDeSoinService();
         this.hi.setTitle("Mes Fiches de Soin");
         Container hii = new Container(new TableLayout(2, 2));
@@ -87,6 +87,6 @@ public class afficherFicheDeSoingui extends Bar {
         //        hi.add(lb);
         System.out.println("" + serviceTask.getList2().get(0).getId_animal().getNom());
 
-    }
+        /*/*/    }
 
 }
