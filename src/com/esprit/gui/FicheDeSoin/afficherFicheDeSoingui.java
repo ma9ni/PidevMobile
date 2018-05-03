@@ -75,6 +75,12 @@ public class afficherFicheDeSoingui extends Bar {
 //            aj.hii.show();
         });
 
+        this.hi.getToolbar().addCommandToOverflowMenu("Modifer Fiche De Soin ", null, (evt) -> {
+            ModifierFicheDeSoingui aj = new ModifierFicheDeSoingui();
+            aj.getHi().show();
+//            aj.hii.show();
+        });
+
 //        lb = new SpanLabel();
         //        // lb = new SpanLabel("aaaaaaahmeeeedaaaaaa");
         //        lb.setText("Animal :" + serviceTask.getList2().get(0).getId_animal().getNom());

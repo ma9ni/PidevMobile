@@ -32,26 +32,35 @@ public class AffichageProfessionnel extends Bar {
     private EncodedImage enc;
     public static int idUserstatic;
     private ComboBox cmb;
+    private ComboBox lieux;
     private Button btn;
     UsersServices serviceUsers = new UsersServices();
     ArrayList<User> ListVet = new ArrayList<>();
     ArrayList<User> listDress = new ArrayList<>();
-    ArrayList<User> listUsers = new ArrayList<>();
 
     public AffichageProfessionnel() {
         super();
-        listUsers.addAll(serviceUsers.getList2());
         Container find = new Container(new BoxLayout(BoxLayout.X_AXIS));
         this.hi.setTitle("Liste Des Professionels");
         cmb = new ComboBox<>();
+        lieux = new ComboBox<>();
         ArrayList<String> Roles = new ArrayList<>();
         Roles.add("Veterinaires");
         Roles.add("Dresseurs");
         for (String Role : Roles) {
             cmb.addItem(Role);
         }
+
+        ArrayList<String> lieuux = new ArrayList<>();
+        lieuux.add("Tunis");
+        lieuux.add("Sfax");
+        lieuux.add("Bizert");
+        for (String l : lieuux) {
+            lieux.addItem(l);
+        }
         btn = new Button("Recherche");
         find.add(cmb);
+//        find.add(lieux);
         find.add(btn);
         this.hi.add(find);
         lb = new SpanLabel("aaaaaaahmeeeedaaaaaa");
@@ -61,29 +70,42 @@ public class AffichageProfessionnel extends Bar {
         // lb.setText("" + serviceTask.getList2().get(0).getId());
 //        hi.add(lb);
 
+        for (int i = 0; i < serviceUsers.getList2().size(); i++) {
+            if (serviceUsers.getList2().get(i).getRole().equals("ROLE_VETE")) {
+                ListVet.add(serviceUsers.getList2().get(i));
+            } else {
+                listDress.add(serviceUsers.getList2().get(i));
+            }
+
+        }
+
+        affiche(serviceUsers.getList2());
         btn.addActionListener(
         (evt) -> {
             if (cmb.getSelectedIndex() == 0) {
-                listUsers.addAll(ListVet);
-                FindUsergui af = new FindUsergui();
-                af.getHi().show();
+//                listUsers.addAll(ListVet);
+//                FindUsergui af = new FindUsergui();
+//                af.getHi().show();
+                hi.removeAll();
+                this.hi.add(find);
+                affiche(ListVet);
+                this.hi.refreshTheme();
 
-            } else if (cmb.getSelectedIndex() == 1) {
-//                listUsers.addAll(listDress);
-//                System.out.println("Dress");
-//                this.hi = new Form();
-//                aff(listDress);
-//                System.out.println("dress");
             } else {
-//                listUsers.addAll(serviceUsers.getList2());
-//                this.hi.refreshTheme();
-//                aff(listUsers);
 
+                hi.removeAll();
+                this.hi.add(find);
+                affiche(listDress);
+                this.hi.refreshTheme();
             }
 
         }
         );
-        for (User t : serviceUsers.getList2()) {
+
+    }
+
+    public void affiche(ArrayList<User> list) {
+        for (User t : list) {
             Container C1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
 //            ImageViewer img = new ImageViewer(theme.getImage(t.getImage()));
             try {
@@ -114,19 +136,12 @@ public class AffichageProfessionnel extends Bar {
             C1.setLeadComponent(lname);
             lname.addPointerPressedListener((evt) -> {
                 idUserstatic = t.getId();
-
                 AfficherUserGui aj = new AfficherUserGui();
                 aj.getHi().show();
 
             });
-            System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-//            lname.addPointerPressedListener((evt) -> {
-//                idUserstatic = t.getId();
-//                AfficherUserGui aj = new AfficherUserGui();
-//                aj.getHi().show();
-//            });
-        }
 
+        }
     }
 
 }
