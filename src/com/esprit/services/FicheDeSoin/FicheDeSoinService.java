@@ -188,4 +188,25 @@ public class FicheDeSoinService {
         return listanimal;
     }
 
+    public void modifierfichedeSoin(FicheDeSoin ta) {
+
+        ConnectionRequest con = new ConnectionRequest();
+
+        String datdebu = formater.format(ta.getProchainRDV());
+
+        String Url = "http://localhost/pi_dev-master/web/app_dev.php/modifierfiche?" + "id=" + ta.getId() + "&observation=" + ta.getObservation() + "&medicament=" + ta.getMedicament() + "&prochainRDV=" + datdebu;
+        con.setUrl(Url);
+
+        System.out.println("tt");
+
+        System.out.println("111111111" + Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            System.out.println("222222222" + str);
+            System.out.println("333333333" + Url);
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+
 }

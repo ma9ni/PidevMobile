@@ -25,7 +25,7 @@ public class UsersServices {
 
     ArrayList<User> listUsers = new ArrayList<>();
 
-    public ArrayList<User> getListUsers(String json) {
+    public ArrayList<User> getListUsersProfesionel(String json) {
 
         ArrayList<User> listEvenement = new ArrayList<>();
 
@@ -65,7 +65,7 @@ public class UsersServices {
 
     }
 
-    public ArrayList<User> getList2() {
+    public ArrayList<User> getList2Profes() {
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/usersmobile");
         // con.setHttpMethod("get");
@@ -73,7 +73,7 @@ public class UsersServices {
             @Override
             public void actionPerformed(NetworkEvent evt) {
                 UsersServices ser = new UsersServices();
-                listUsers = ser.getListUsers(new String(con.getResponseData()));
+                listUsers = ser.getListUsersProfesionel(new String(con.getResponseData()));
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);

@@ -19,6 +19,7 @@ import com.esprit.gui.users.AjouterFs;
 import com.esprit.gui.users.*;
 
 import com.esprit.entities.animal;
+import com.esprit.gui.FicheDeDressage.afficherFicheDeDressageGUI;
 import com.esprit.gui.FicheDeSoin.afficherFicheDeSoingui;
 import com.esprit.gui.animal.affichergui;
 
@@ -90,6 +91,14 @@ public class Bar {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 afficherFicheDeSoingui aj = new afficherFicheDeSoingui();
+                aj.getHi().show();
+            }
+        });
+
+        tb.addMaterialCommandToSideMenu("mes fiche de Dressage", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                afficherFicheDeDressageGUI aj = new afficherFicheDeDressageGUI();
                 aj.getHi().show();
             }
         });
