@@ -16,11 +16,11 @@ public class FicheDeSoin {
 
     //Les attributs
     private int id;
-    private int id_membre;
+    private User id_membre;
     private String observation;
     private String medicament;
     private Date prochainRDV;
-    private int id_animal;
+    private animal id_animal;
     private Date dateCreation;
     private int etat;
 
@@ -34,11 +34,11 @@ public class FicheDeSoin {
         this.id = id;
     }
 
-    public int getId_membre() {
+    public User getId_membre() {
         return id_membre;
     }
 
-    public void setId_membre(int id_membre) {
+    public void setId_membre(User id_membre) {
         this.id_membre = id_membre;
     }
 
@@ -66,11 +66,11 @@ public class FicheDeSoin {
         this.prochainRDV = prochainRDV;
     }
 
-    public int getId_animal() {
+    public animal getId_animal() {
         return id_animal;
     }
 
-    public void setId_animal(int id_animal) {
+    public void setId_animal(animal id_animal) {
         this.id_animal = id_animal;
     }
 
@@ -88,6 +88,36 @@ public class FicheDeSoin {
 
     public void setEtat(int etat) {
         this.etat = etat;
+    }
+
+    public FicheDeSoin() {
+    }
+
+    public FicheDeSoin(int id, User id_membre, String observation, String medicament, Date prochainRDV, animal id_animal, Date dateCreation, int etat) {
+        this.id = id;
+        this.id_membre = id_membre;
+        this.observation = observation;
+        this.medicament = medicament;
+        this.prochainRDV = prochainRDV;
+        this.id_animal = id_animal;
+        this.dateCreation = dateCreation;
+        this.etat = etat;
+    }
+
+    public FicheDeSoin(User id_membre, String observation, String medicament, Date prochainRDV, animal id_animal, Date dateCreation, int etat) {
+
+        this.id_membre = id_membre;
+        this.observation = observation;
+        this.medicament = medicament;
+        this.prochainRDV = prochainRDV;
+        this.id_animal = id_animal;
+        this.dateCreation = dateCreation;
+        this.etat = etat;
+    }
+
+    @Override
+    public String toString() {
+        return "FicheDeSoin{" + "id=" + id + ", id_membre=" + id_membre + ", observation=" + observation + ", medicament=" + medicament + ", prochainRDV=" + prochainRDV + ", id_animal=" + id_animal + ", dateCreation=" + dateCreation + ", etat=" + etat + ", formater=" + formater + '}';
     }
 
 }
