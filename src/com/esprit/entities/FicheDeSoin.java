@@ -104,6 +104,14 @@ public class FicheDeSoin {
         this.etat = etat;
     }
 
+    public FicheDeSoin(int id, String observation, String medicament, Date prochainRDV) {
+        this.id = id;
+        this.observation = observation;
+        this.medicament = medicament;
+        this.prochainRDV = prochainRDV;
+
+    }
+
     public FicheDeSoin(User id_membre, String observation, String medicament, Date prochainRDV, animal id_animal, Date dateCreation, int etat) {
 
         this.id_membre = id_membre;

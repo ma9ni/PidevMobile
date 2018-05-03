@@ -68,6 +68,10 @@ public class afficherFicheDeSoingui extends Bar {
             C1.add(C2);
             C1.setLeadComponent(l);
             hi.add(C1);
+            l.addPointerPressedListener((evt) -> {
+                ModifierFicheDeSoingui aj = new ModifierFicheDeSoingui(t);
+                aj.getHi().show();
+            });
         }
         this.hi.getToolbar().addCommandToOverflowMenu("Ajouter Fiche De Soin ", null, (evt) -> {
             ajouterFicheDeSoin aj = new ajouterFicheDeSoin();
@@ -76,8 +80,8 @@ public class afficherFicheDeSoingui extends Bar {
         });
 
         this.hi.getToolbar().addCommandToOverflowMenu("Modifer Fiche De Soin ", null, (evt) -> {
-            ModifierFicheDeSoingui aj = new ModifierFicheDeSoingui();
-            aj.getHi().show();
+//            ModifierFicheDeSoingui aj = new ModifierFicheDeSoingui();
+//            aj.getHi().show();
 //            aj.hii.show();
         });
 

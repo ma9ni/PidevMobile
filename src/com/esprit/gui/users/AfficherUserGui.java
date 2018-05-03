@@ -102,7 +102,7 @@ public class AfficherUserGui extends Bar {
         Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container C4 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
-        listUsers = serviceUsers.getList2();
+        listUsers = serviceUsers.getList2Profes();
         for (User uu : listUsers) {
             if (uu.getId() == idUserstatic) {
                 u = uu;
