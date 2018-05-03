@@ -5,10 +5,19 @@
  */
 package com.esprit.entities;
 
+import java.util.Date;
+
 /**
  *
  * @author Ahmed
  */
-public class Accessoir {
+public class Nourriture extends Produit {
+
+    private Date datelimite;
+
+    public Nourriture() {
+        super();
+        datelimite = new Date();
+    }
 
 }

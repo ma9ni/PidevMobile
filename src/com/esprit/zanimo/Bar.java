@@ -13,7 +13,9 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
+import com.esprit.gui.users.AjouterAccessoire;
 import com.esprit.gui.users.AjouterFs;
+import com.esprit.gui.users.*;
 
 /**
  *
@@ -25,12 +27,12 @@ public class Bar {
     protected Resources theme;
 
     public Bar() {
-
-        theme = UIManager.initFirstTheme("/theme");
+        /*theme = UIManager.initFirstTheme("/theme");*/
         hi = new Form("Best Pets");
+//        ImageViewer limage = new ImageViewer();
+//        limage.setImage(theme.getImage("1.jpg"));
         Toolbar tb = hi.getToolbar();
-        ImageViewer img = new ImageViewer(theme.getImage("1.jpg"));
-        // hi.add(img);
+        //  hi.add(limage);
         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -47,13 +49,15 @@ public class Bar {
         tb.addMaterialCommandToSideMenu("Produits", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                hi.show();
+                ListeAccessoires ajouterAccessoire = new ListeAccessoires();
+                ajouterAccessoire.hi.show();
             }
         });
         tb.addMaterialCommandToSideMenu("Annonce", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                hi.show();
+                AjouterAccessoire ajouterAccessoire = new AjouterAccessoire();
+                ajouterAccessoire.getHi().show();
             }
         });
         tb.addMaterialCommandToSideMenu("Concours", FontImage.MATERIAL_HOME, new ActionListener() {
