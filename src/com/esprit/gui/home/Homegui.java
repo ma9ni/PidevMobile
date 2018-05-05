@@ -5,7 +5,11 @@
  */
 package com.esprit.gui.home;
 
+import com.codename1.components.ImageViewer;
+import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.Toolbar;
+import com.codename1.ui.plaf.UIManager;
 import com.esprit.zanimo.Bar;
 
 /**

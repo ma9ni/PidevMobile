@@ -15,6 +15,14 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.esprit.entities.User;
 import com.esprit.gui.Adoption.AffichageAdoptionGui;
+
+import com.esprit.gui.users.AjouterAccessoire;
+import com.esprit.gui.users.AjouterFs;
+import com.esprit.gui.users.*;
+
+import com.esprit.entities.animal;
+import com.esprit.gui.FicheDeDressage.afficherFicheDeDressageGUI;
+import com.esprit.gui.FicheDeSoin.afficherFicheDeSoingui;
 import com.esprit.gui.animal.affichergui;
 import com.esprit.gui.home.Homegui;
 
@@ -33,12 +41,12 @@ public class Bar {
     protected Resources theme;
 
     public Bar() {
-
-        theme = UIManager.initFirstTheme("/theme");
+        /*theme = UIManager.initFirstTheme("/theme");*/
         hi = new Form("Best Pets");
+//        ImageViewer limage = new ImageViewer();
+//        limage.setImage(theme.getImage("1.jpg"));
         Toolbar tb = hi.getToolbar();
-        ImageViewer img = new ImageViewer(theme.getImage("1.jpg"));
-        // hi.add(img);
+        //  hi.add(limage);
         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -57,13 +65,15 @@ public class Bar {
         tb.addMaterialCommandToSideMenu("Produits", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                hi.show();
+                ListeAccessoires ajouterAccessoire = new ListeAccessoires();
+                ajouterAccessoire.hi.show();
             }
         });
         tb.addMaterialCommandToSideMenu("Annonce", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                hi.show();
+                AjouterAccessoire ajouterAccessoire = new AjouterAccessoire();
+                ajouterAccessoire.getHi().show();
             }
         });
         tb.addMaterialCommandToSideMenu("Concours", FontImage.MATERIAL_HOME, new ActionListener() {
@@ -82,13 +92,16 @@ public class Bar {
           });  
 
         
-                tb.addMaterialCommandToSideMenu("animal", FontImage.MATERIAL_HOME, new ActionListener() {
+
+        tb.addMaterialCommandToSideMenu("animal", FontImage.MATERIAL_HOME, new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 affichergui aj = new affichergui();
                 aj.getHi().show();
             }
         });
+
                 
                 if(User.getIdOfConnectedUser()==0){
                                     tb.addMaterialCommandToSideMenu("Login & Sign In", FontImage.MATERIAL_HOME, new ActionListener() {
@@ -118,6 +131,22 @@ public class Bar {
                            }
                        }); 
                 }
+
+        tb.addMaterialCommandToSideMenu("mes fiche de soin", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                afficherFicheDeSoingui aj = new afficherFicheDeSoingui();
+                aj.getHi().show();
+            }
+        });
+
+        tb.addMaterialCommandToSideMenu("mes fiche de Dressage", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                afficherFicheDeDressageGUI aj = new afficherFicheDeDressageGUI();
+                aj.getHi().show();
+            }
+        });
     }
 
     public Form getHi() {

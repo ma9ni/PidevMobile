@@ -3,12 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/entities/User.java</file>
             <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/AjoutAdoptionGui.java</file>
             <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/services/user/UsersServices.java</file>
             <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/Login.java</file>
             <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/inscription.java</file>
             <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/services/Adoption/AdoptionService.java</file>
+=======
+            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/gui/FicheDeSoin/afficherFicheDeSoingui.java</file>
+            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/services/FicheDeSoin/FicheDeSoinService.java</file>
+>>>>>>> 87ad915136a429e18c5d1a8fc7ed8ec4a71990dd
         </group>
     </open-files>
 </project-private>

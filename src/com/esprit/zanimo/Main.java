@@ -48,6 +48,8 @@ public class Main {
         Homegui b = new Homegui();
         b.getHi().show();
 
+//        String hashed = BCrypt.hashpw("ahmed", BCrypt.gensalt());
+//        System.out.println("hashed   :" + hashed);
         // hi.show();
     }
 

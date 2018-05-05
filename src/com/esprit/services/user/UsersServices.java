@@ -32,7 +32,7 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class UsersServices {
  int a;
-    /* public ArrayList<User> getListUser(String json) {
+    public ArrayList<User> getListUser(String json) {
 
         ArrayList<User> listEtudiants = new ArrayList<>();
 
@@ -67,45 +67,10 @@ public class UsersServices {
         return listEtudiants;
 
     }
+
     ArrayList<User> listUsers = new ArrayList<>();
 
-    public ArrayList<User> getList2() {
-        ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/veterinaires");
-
-        con.addResponseListener(new ActionListener<NetworkEvent>() {
-            @Override
-            public void actionPerformed(NetworkEvent evt) {
-                UsersServices ser = new UsersServices();
-                listUsers = ser.getListUser(new String(con.getResponseData()));
-            }
-        });
-
-        NetworkManager.getInstance().addToQueueAndWait(con);
-        return listUsers;
-    }*/
- /* public void newEvent(Evenements ev) {
-        ConnectionRequest con = new ConnectionRequest();
-        System.out.println(ev.getNomevenement());
-        String Url = "http://localhost/pidevmobile/web/app_dev.php/Evenements/new/"+ev.getNomevenement()+"/"+ev.getLieu()+"/"+ev.getDate()+"/"+ev.getDatefin()+"/"+ev.getNombredeplaces()+"/"+ev.getDescription();
-        con.setUrl(Url);
-
-        System.out.println("tt");
-
-        con.addResponseListener((e) -> {
-            String str = new String(con.getResponseData());
-            System.out.println(str);
-//            if (str.trim().equalsIgnoreCase("OK")) {
-//                f2.setTitle(tlogin.getText());
-//             f2.show();
-//            }
-//            else{
-//            Dialog.show("error", "login ou pwd invalid", "ok", null);
-//            }
-        });
-        NetworkManager.getInstance().addToQueueAndWait(con);
-    }*/
-    public ArrayList<User> getListTask(String json) {
+    public ArrayList<User> getListUsersProfesionel(String json) {
 
         ArrayList<User> listEvenement = new ArrayList<>();
 
@@ -185,6 +150,20 @@ public class UsersServices {
                 //e.setId(Integer.parseInt(obj.get("id").toString().trim()));
                 // e.setEtat(obj.get("state").toString());
                 //e.setNom(obj.get("name").toString());
+
+              //  float id = Float.parseFloat(obj.get("id").toString());
+                e.setId((int) id);
+               // String nomevnt = obj.get("gouvernorat").toString();
+                int numtel = Integer.parseInt(obj.get("numTel").toString());
+                //String img = obj.get("image").toString();
+                e.setAdresse(obj.get("adresse").toString());
+                e.setUsername(obj.get("username").toString());
+                e.setEmail(obj.get("email").toString());
+                ArrayList<String> UserRole = (ArrayList<String>) obj.get("roles");
+                e.setNum_tel(numtel);
+                e.setRole(UserRole.get(0));
+                e.setGouvernorat(nomevnt);
+                e.setImage(img);
                 System.out.println(e);
                 listEvenement.add(e);
 
@@ -196,20 +175,20 @@ public class UsersServices {
         return listEvenement;
 
     }
-    ArrayList<User> listEvenements = new ArrayList<>();
 
-    public ArrayList<User> getList2() {
+    public ArrayList<User> getList2Profes() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/veterinaires");
+        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/usersmobile");
+        // con.setHttpMethod("get");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
                 UsersServices ser = new UsersServices();
-                listEvenements = ser.getListTask(new String(con.getResponseData()));
+                listUsers = ser.getListUsersProfesionel(new String(con.getResponseData()));
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
-        return listEvenements;
+        return listUsers;
     }
    
 // public boolean isEmail(String s) {
@@ -234,7 +213,7 @@ public class UsersServices {
             }
         });
       
-        System.out.println("aaaaasd"+listEvenements);
+      //  System.out.println("aaaaasd"+listEvenements);
                 NetworkManager.getInstance().addToQueueAndWait(con);
                 return a;
 
@@ -464,5 +443,6 @@ public class UsersServices {
 //        userForm.show();
 //         */
 //    }
+
 
 }

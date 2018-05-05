@@ -34,9 +34,17 @@ public class User {
     
     public User() {
     }
+    public User(int id) {
+        this.id = id;
+    }
 
     public User(String username, String email, String pasword, String image, String gouvernorat, String role) {
-        this.username = username;
+
+
+
+    
+
+    this.username = username;
         this.email = email;
         this.pasword = pasword;
         this.image = image;
@@ -181,6 +189,9 @@ public class User {
     public void setLast_login(String last_login) {
         this.last_login = last_login;
     }
+
+ 
+  
 
     @Override
     public String toString() {
