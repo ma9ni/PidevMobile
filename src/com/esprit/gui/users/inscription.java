@@ -33,49 +33,49 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author user
  */
-public class inscription extends Bar{
-    public inscription(){
+public class inscription extends Bar {
+
+    public inscription() {
         super();
-        
-        Validator val= new Validator();
-        
+
+        Validator val = new Validator();
+
         Container c1 = new Container(BoxLayout.y());
         Container c2 = new Container(BoxLayout.x());
         Container c3 = new Container(BoxLayout.x());
         Container c4 = new Container(BoxLayout.y());
-        
-        
+
         Label pseaudo = new Label("Pseudo");
         TextField tpseaudo = new TextField();
         c1.add(pseaudo);
         c1.add(tpseaudo);
-        
+
         Label Email = new Label("Email");
         TextField tEMail = new TextField();
         c1.add(Email);
         c1.add(tEMail);
-        
+
         Label MotdePasse = new Label("Mot de passe");
         TextField tmotdepasse = new TextField();
         c1.add(MotdePasse);
         c1.add(tmotdepasse);
-        
+
         Label confirmermotdepasse = new Label("Confirmer Mot de passe");
         TextField tconf = new TextField();
         c1.add(confirmermotdepasse);
         c1.add(tconf);
-        
+
         Label Role = new Label("Role");
-        ComboBox  CRole = new ComboBox<>();
-                String[] lesTYpes = {"Utilisateur","Veterinaire","Dresseur","Petiteur"};
+        ComboBox CRole = new ComboBox<>();
+        String[] lesTYpes = {"Utilisateur", "Veterinaire", "Dresseur", "Petiteur"};
         for (int i = 0; i < 4; i++) {
-                   CRole.addItem(lesTYpes[i]);
- 
+            CRole.addItem(lesTYpes[i]);
+
         }
         c2.add(Role);
         c2.add(CRole);
-        
-         Label photoLabel = new Label("Photo");
+
+        Label photoLabel = new Label("Photo");
         Button selectPhoto = new Button("parcourir");
         TextField photoField = new TextField("", "Importer une photo", 10, TextArea.ANY);
 //        photoField.setEditable(false);
@@ -84,7 +84,7 @@ public class inscription extends Bar{
                 Display.getInstance().openGallery((e) -> {
                     if (e != null && e.getSource() != null) {
                         String file = (String) e.getSource();
-                       // pphoto = file.substring(file.lastIndexOf('/') + 1);
+                        // pphoto = file.substring(file.lastIndexOf('/') + 1);
                         photoField.setText(file.substring(file.lastIndexOf('/') + 1));
                     }
                 }, Display.GALLERY_IMAGE);
@@ -95,68 +95,63 @@ public class inscription extends Bar{
         c3.add(photoLabel);
         c3.add(photoField);
         c3.add(selectPhoto);
-        
+
         val.addConstraint(Email, new LengthConstraint(6));
         Button BInscription = new Button("Inscription");
         UsersServices US = new UsersServices();
         Label Erreur = new Label("");
-        int a=1;
-        
-        
+        int a = 1;
+
         // buton de l'inscription
         BInscription.addActionListener((evt) -> {
-            
-            System.out.println("taat"+tEMail.getText());
+
+            System.out.println("taat" + tEMail.getText());
             ConnectionRequest req = new ConnectionRequest();
-        req.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/loginMobile/" + tEMail.getText() + "");
-        req.setHttpMethod("GET");
-        req.addResponseListener(new ActionListener<NetworkEvent>() {
-            @Override
-            public void actionPerformed(NetworkEvent evt) {
-                byte[] data = (byte[]) req.getResponseData();
-                String s = new String(data);
-                Loginn login = new Loginn();
-                User user = login.RecupererUser(s);
-                if (user != null) {
-                   System.out.println("aaaa");
-                Erreur.setText("Email existe déja ");
-                c4.add(Erreur);
-                hi.add(c4);
-                hi.show();
-                } else {
-                    
-                    System.out.println("sucess");
-                    Dialog.show("sccess", "bienvenu vous etes inscrit", "Ok", null);
-                    String hasch=BCrypt.hashpw(tmotdepasse.getText(),BCrypt.gensalt());
-                    String pwd = StringUtil.replaceAll(hasch, "$2a", "$2y");
+            req.setUrl("http://localhost/pi_dev-master/web/app_dev.php/loginMobile/" + tEMail.getText() + "");
+            req.setHttpMethod("GET");
+            req.addResponseListener(new ActionListener<NetworkEvent>() {
+                @Override
+                public void actionPerformed(NetworkEvent evt) {
+                    byte[] data = (byte[]) req.getResponseData();
+                    String s = new String(data);
+                    Loginn login = new Loginn();
+                    User user = login.RecupererUser(s);
+                    if (user != null) {
+                        System.out.println("aaaa");
+                        Erreur.setText("Email existe déja ");
+                        c4.add(Erreur);
+                        hi.add(c4);
+                        hi.show();
+                    } else {
 
-                    User UserInscri= new User(tpseaudo.getText(), tEMail.getText(),pwd  ,photoField.getText() , "" , CRole.getSelectedItem().toString());
-                                        System.out.println("hedhaya user2 "+UserInscri);
+                        System.out.println("sucess");
+                        Dialog.show("sccess", "bienvenu vous etes inscrit", "Ok", null);
+                        String hasch = BCrypt.hashpw(tmotdepasse.getText(), BCrypt.gensalt());
+                        String pwd = StringUtil.replaceAll(hasch, "$2a", "$2y");
 
-                                 UserInscri.setRole(CRole.getSelectedItem().toString());
-                                 System.out.println("hedhaya user3 "+UserInscri);
-                                 System.out.println(CRole.getSelectedItem().toString());
-                    System.out.println(UserInscri.getRole());
-                    UsersServices us= new UsersServices();
-                    us.inscription(UserInscri);
+                        User UserInscri = new User(tpseaudo.getText(), tEMail.getText(), pwd, photoField.getText(), "", CRole.getSelectedItem().toString());
+                        System.out.println("hedhaya user2 " + UserInscri);
+
+                        UserInscri.setRole(CRole.getSelectedItem().toString());
+                        System.out.println("hedhaya user3 " + UserInscri);
+                        System.out.println(CRole.getSelectedItem().toString());
+                        System.out.println(UserInscri.getRole());
+                        UsersServices us = new UsersServices();
+                        us.inscription(UserInscri);
+                    }
                 }
-            }
+            });
+            NetworkManager.getInstance().addToQueue(req);
+
         });
-        NetworkManager.getInstance().addToQueue(req);
-            
-        });
-           
+
         hi.add(c1);
         hi.add(c2);
         hi.add(c3);
         hi.add(BInscription);
-       // hi.add(Erreur);
+        // hi.add(Erreur);
         hi.show();
-        
-        
-        
+
     }
-    
-    
-    
+
 }
