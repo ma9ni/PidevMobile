@@ -6,6 +6,10 @@
 package com.esprit.gui.users;
 
 import com.codename1.components.ImageViewer;
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.JSONParser;
+import com.codename1.io.NetworkManager;
+import com.codename1.maps.Coord;
 import com.codename1.ui.Button;
 import static com.codename1.ui.CN.convertToPixels;
 import com.codename1.ui.Component;
@@ -30,8 +34,15 @@ import static com.esprit.gui.users.AffichageProfessionnel.idUserstatic;
 import com.esprit.services.rating.RatingService;
 import com.esprit.services.user.UsersServices;
 import com.esprit.zanimo.Bar;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import com.codename1.googlemaps.MapContainer;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
 
 /**
  *
@@ -58,6 +69,30 @@ public class AfficherUserGui extends Bar {
     ArrayList<User> listUsers = new ArrayList<>();
     ArrayList<Rating> listRating = new ArrayList<>();
     User u;
+
+    private static final String HTML_API_KEY = "AIzaSyDcwHdDoI65jU6iHlOGv54Efo67fE_AWw0";
+
+    public static Coord getCoords(String address) {
+        Coord ret = null;
+        try {
+            ConnectionRequest request = new ConnectionRequest("https://maps.googleapis.com/maps/api/geocode/json", false);
+            request.addArgument("key", HTML_API_KEY);
+            request.addArgument("address", address);
+
+            NetworkManager.getInstance().addToQueueAndWait(request);
+            Map<String, Object> response = new JSONParser().parseJSON(new InputStreamReader(new ByteArrayInputStream(request.getResponseData()), "UTF-8"));
+            if (response.get("results") != null) {
+                ArrayList results = (ArrayList) response.get("results");
+                if (results.size() > 0) {
+                    LinkedHashMap location = (LinkedHashMap) ((LinkedHashMap) ((LinkedHashMap) results.get(0)).get("geometry")).get("location");
+                    ret = new Coord((double) location.get("lat"), (double) location.get("lng"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
 
     private void initStarRankStyle(Style s, Image star) {
         s.setBackgroundType(Style.BACKGROUND_IMAGE_TILE_BOTH);
@@ -182,6 +217,7 @@ public class AfficherUserGui extends Bar {
         C2.add(giveNote);
         C2.add(giveComme);
         C2.add(addnote);
+
         rate.addActionListener((ActionListener) (ActionEvent evt1) -> {
             giveNote.setText("Note:" + rate.getProgress());
             System.out.println("rating :" + rate.getProgress());
@@ -204,6 +240,21 @@ public class AfficherUserGui extends Bar {
         );
         this.hi.setTitle("afficher " + u.getUsername());
         hi.add(C2);
+        Style s = new Style();
+        s.setFgColor(0x8A2BE2);
+        s.setBgTransparency(0);
+        FontImage markerImg = FontImage.createMaterial(FontImage.MATERIAL_PLACE, s, Display.getInstance().convertToPixels(1));
+        MapContainer cn = new MapContainer();
+
+        cn.zoom(getCoords(u.getGouvernorat()), 18);
+
+        cn.setCameraPosition(getCoords(u.getGouvernorat())); // since the image is iin the jar this is unlikely
+        cn.addMarker(EncodedImage.createFromImage(markerImg, false), getCoords(u.getGouvernorat()), "Hi marker", "Optional long description", new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                Dialog.show("Marker Clicked!", "You clicked the marker", "OK", null);
+            }
+        });
+        C2.add(cn);
         System.out.println(
         "ussserAhmeeeeeeeeeeeeed" + u);
     }

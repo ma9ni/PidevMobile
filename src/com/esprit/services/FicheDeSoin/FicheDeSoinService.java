@@ -15,6 +15,7 @@ import com.esprit.entities.FicheDeSoin;
 import com.esprit.entities.animal;
 import com.esprit.services.animal.animalservices;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +30,7 @@ public class FicheDeSoinService {
 
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
     Date d;
+    private String message;
 
     public void ajoutfichedeSoin(FicheDeSoin ta) {
 
@@ -47,13 +49,6 @@ public class FicheDeSoinService {
             System.out.println(str);
             System.out.println("222222222" + str);
             System.out.println("333333333" + Url);
-//            if (str.trim().equalsIgnoreCase("OK")) {
-//                f2.setTitle(tlogin.getText());
-//             f2.show();
-//            }
-//            else{
-//            Dialog.show("error", "login ou pwd invalid", "ok", null);
-//            }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
@@ -64,7 +59,6 @@ public class FicheDeSoinService {
 
         try {
 
-            //55555
             System.out.println(json);
             JSONParser j = new JSONParser();
 
@@ -127,7 +121,8 @@ public class FicheDeSoinService {
         return listEtudiants;
 
     }
-    ArrayList<FicheDeSoin> listTasks = new ArrayList<>();
+
+    ArrayList<FicheDeSoin> listfichedeSoin = new ArrayList<>();
 
     public ArrayList<FicheDeSoin> getList2() {
         ConnectionRequest con = new ConnectionRequest();
@@ -136,11 +131,11 @@ public class FicheDeSoinService {
             @Override
             public void actionPerformed(NetworkEvent evt) {
                 FicheDeSoinService ser = new FicheDeSoinService();
-                listTasks = ser.getListTask(new String(con.getResponseData()));
+                listfichedeSoin = ser.getListTask(new String(con.getResponseData()));
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
-        return listTasks;
+        return listfichedeSoin;
     }
 
     public ArrayList<animal> getListanimal(String json) {
@@ -175,6 +170,7 @@ public class FicheDeSoinService {
         return listEtudiants;
 
     }
+
     ArrayList<animal> listanimal = new ArrayList<>();
 
     public ArrayList<animal> getListanimal2() {
@@ -209,4 +205,24 @@ public class FicheDeSoinService {
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
 
+    public void supprimerficheDeDressage(FicheDeSoin ta) {
+
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/dellficheDesoin/" + ta.getId());
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                try {
+                    message = new String(con.getResponseData(), "utf-8");
+                    System.out.println("message" + message);
+                } catch (UnsupportedEncodingException ex) {
+                    System.out.println(ex.toString());
+                }
+            }
+
+        });
+
+        NetworkManager.getInstance().addToQueueAndWait(con);
+
+    }
 }

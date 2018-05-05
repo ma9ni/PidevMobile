@@ -75,10 +75,14 @@ public class afficherFicheDeDressageGUI extends Bar {
             C1.setLeadComponent(l);
             hi.add(C1);
             l.addPointerReleasedListener((evt) -> {
-                ModifierFicheDeDressage aj = new ModifierFicheDeDressage(t);
+                ModifierFicheDeDressageGUI aj = new ModifierFicheDeDressageGUI(t);
                 aj.getHi().show();
             });
         }
+        this.hi.getToolbar().addCommandToOverflowMenu("Ajouter Fiche De Dressage ", null, (evt) -> {
+            ajouterFicheDeDressageGUI aj = new ajouterFicheDeDressageGUI();
+            aj.getHi().show();
+        });
 
     }
 

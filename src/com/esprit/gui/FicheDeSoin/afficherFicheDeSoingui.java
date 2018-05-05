@@ -15,7 +15,6 @@ import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.table.TableLayout;
 import com.esprit.entities.FicheDeSoin;
-import com.esprit.gui.users.AfficherUserGui;
 import com.esprit.services.FicheDeSoin.FicheDeSoinService;
 import com.esprit.zanimo.Bar;
 import java.io.IOException;
@@ -67,7 +66,7 @@ public class afficherFicheDeSoingui extends Bar {
             C1.add(C2);
             C1.setLeadComponent(l);
             hi.add(C1);
-            l.addPointerPressedListener((evt) -> {
+            l.addPointerReleasedListener((evt) -> {
                 ModifierFicheDeSoingui aj = new ModifierFicheDeSoingui(t);
                 aj.getHi().show();
             });
@@ -75,7 +74,6 @@ public class afficherFicheDeSoingui extends Bar {
         this.hi.getToolbar().addCommandToOverflowMenu("Ajouter Fiche De Soin ", null, (evt) -> {
             ajouterFicheDeSoin aj = new ajouterFicheDeSoin();
             aj.getHi().show();
-//            aj.hii.show();
         });
 
         this.hi.getToolbar().addCommandToOverflowMenu("Modifer Fiche De Soin ", null, (evt) -> {
