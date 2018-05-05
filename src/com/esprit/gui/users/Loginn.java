@@ -13,12 +13,11 @@ import com.codename1.io.NetworkManager;
 import com.codename1.social.FacebookConnect;
 import com.codename1.social.GoogleConnect;
 import com.codename1.social.Login;
-import com.codename1.social.LoginCallback;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
-import com.codename1.ui.Label;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -28,9 +27,7 @@ import com.esprit.entities.User;
 import com.esprit.gui.home.Homegui;
 import com.esprit.services.user.UsersServices;
 import com.esprit.zanimo.Bar;
-import com.esprit.zanimo.Main;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Map;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -40,7 +37,8 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class Loginn extends Bar{
     public static Login loginMethode;
-
+public   Button loginWFace;
+public   Button loginWG;
     public Loginn() {
 
         super();
@@ -87,7 +85,10 @@ public class Loginn extends Bar{
        int deviceWidht = Display.getInstance().getDisplayWidth();
        int deviceheight = Display.getInstance().getDisplayHeight();
        //Social actionbuttons
-        Button loginWFace = new Button(theme.getImage("facebookLoginButton.png").scaled(deviceWidht, deviceheight/8));
+        try {
+            loginWFace = new Button(EncodedImage.create("/facebookLoginButton.png").scaled(deviceWidht, deviceheight/8));
+        } catch (IOException ex) {
+        }
         //loginWFace.setUIID("LoginButton");
         loginWFace.addActionListener(new ActionListener() {
 
@@ -115,7 +116,10 @@ public class Loginn extends Bar{
                 }
             }
         });
-          Button loginWG = new Button(theme.getImage("googleLogin.png").scaled(deviceWidht, deviceheight/8));
+        try {
+            loginWG = new Button(EncodedImage.create("/googleLogin.png").scaled(deviceWidht, deviceheight/8));
+        } catch (IOException ex) {
+        }
         //loginWG.setUIID("LoginButton");
         loginWG.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {

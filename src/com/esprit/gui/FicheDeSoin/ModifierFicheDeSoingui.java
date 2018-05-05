@@ -26,6 +26,7 @@ import java.util.Date;
 public class ModifierFicheDeSoingui extends Bar {
 
     Button btn;
+    Button supp;
     FicheDeSoinService fsDeSoinService = new FicheDeSoinService();
 
     public ModifierFicheDeSoingui(FicheDeSoin fs) {
@@ -36,7 +37,7 @@ public class ModifierFicheDeSoingui extends Bar {
 
         TextComponent observation = new TextComponent().label("observation").multiline(true);
         TextComponent price = new TextComponent().label("Price");
-        TextComponent medicament = new TextComponent().label("medicament");
+        TextComponent medicament = new TextComponent().label("medicament").errorMessage("price is must be number");
         PickerComponent prochainRDV = PickerComponent.createDate(new Date()).label("prochainRDV");
 //        TextComponent description = new TextComponent().label("Description").multiline(true);
 
@@ -44,6 +45,7 @@ public class ModifierFicheDeSoingui extends Bar {
         val.addConstraint(observation, new LengthConstraint(60));
         val.addConstraint(price, new NumericConstraint(true));
         btn = new Button("modifier");
+        supp = new Button("suprrimer");
         f.add(tl.createConstraint().widthPercentage(60), observation);
 
         f.add(tl.createConstraint().widthPercentage(40), prochainRDV);
@@ -56,14 +58,19 @@ public class ModifierFicheDeSoingui extends Bar {
         medicament.getField().setText(fs.getMedicament());
         prochainRDV.getPicker().setDate(fs.getProchainRDV());
 
-        hi.add(btn);
         hi.add(f);
-
+        hi.add(btn);
+        hi.add(supp);
         btn.addActionListener((evt) -> {
             FicheDeSoin fsmodi = new FicheDeSoin(fs.getId(), observation.getField().getText(), medicament.getField().getText(), prochainRDV.getPicker().getDate());
             fsDeSoinService.modifierfichedeSoin(fsmodi);
             System.out.println("OOOOOK");
             System.out.println(fsmodi);
+        });
+        supp.addActionListener((evt) -> {
+            fsDeSoinService.supprimerficheDeDressage(fs);
+            afficherFicheDeSoingui aj = new afficherFicheDeSoingui();
+            aj.getHi().show();
         });
 //        System.out.println(date.getPicker().getDate());
 ////        title.getField().setText("aaaa");
