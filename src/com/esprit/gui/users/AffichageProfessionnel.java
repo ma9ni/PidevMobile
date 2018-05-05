@@ -38,7 +38,7 @@ public class AffichageProfessionnel extends Bar {
         // lb.setText("" + serviceTask.getList2().get(0).getId());
         hi.add(lb);
 
-        for (User t : serviceTask.getList2()) {
+            for (User t : serviceTask.getList2()) {
             Container C1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
 //            ImageViewer img = new ImageViewer(theme.getImage(t.getImage()));
             try {

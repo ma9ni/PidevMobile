@@ -13,12 +13,15 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
-import com.esprit.entities.animal;
+import com.esprit.entities.User;
+import com.esprit.gui.Adoption.AffichageAdoptionGui;
 import com.esprit.gui.animal.affichergui;
+import com.esprit.gui.home.Homegui;
 
 import com.esprit.gui.users.AffichageProfessionnel;
 import com.esprit.gui.users.AjouterFs;
-import com.esprit.services.animal.animalservices;
+import com.esprit.gui.users.Loginn;
+import com.esprit.gui.users.Profil;
 
 /**
  *
@@ -69,6 +72,15 @@ public class Bar {
                 hi.show();
             }
         });
+                tb.addMaterialCommandToSideMenu("Adoption", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                      AffichageAdoptionGui aj = new AffichageAdoptionGui();
+                      aj.getHi().show();
+
+            }
+          });  
+
         
                 tb.addMaterialCommandToSideMenu("animal", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
@@ -77,6 +89,35 @@ public class Bar {
                 aj.getHi().show();
             }
         });
+                
+                if(User.getIdOfConnectedUser()==0){
+                                    tb.addMaterialCommandToSideMenu("Login & Sign In", FontImage.MATERIAL_HOME, new ActionListener() {
+                           @Override
+                           public void actionPerformed(ActionEvent evt) {
+                               Loginn aj = new Loginn();
+                               aj.getHi().show();
+                           }
+                       }); 
+                }else{
+                     tb.addMaterialCommandToSideMenu("déconnexion", FontImage.MATERIAL_HOME, new ActionListener() {
+                           @Override
+                           public void actionPerformed(ActionEvent evt) {
+                               User.setIdOfConnectedUser(0);
+                               Homegui aj = new Homegui();
+                               aj.getHi().show();
+                           }
+                       }); 
+                }
+     
+                if(User.getIdOfConnectedUser()!=0){
+                                    tb.addMaterialCommandToSideMenu("Profil", FontImage.MATERIAL_HOME, new ActionListener() {
+                           @Override
+                           public void actionPerformed(ActionEvent evt) {
+                               Profil aj = new Profil();
+                               aj.getHi().show();
+                           }
+                       }); 
+                }
     }
 
     public Form getHi() {
