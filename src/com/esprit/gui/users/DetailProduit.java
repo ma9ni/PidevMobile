@@ -7,6 +7,7 @@ package com.esprit.gui.users;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
+import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
@@ -24,6 +25,7 @@ import com.codename1.ui.plaf.Border;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
 import com.esprit.entities.Accessoire;
+import com.esprit.entities.User;
 import com.esprit.services.user.AccessoireServices;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,7 +81,7 @@ public class DetailProduit {
             SpanLabel laCateg = new SpanLabel("ce produit est destiné aux \n " + accessoire.getCategorie());
             Label dateLab = new Label("publier le ");
             SpanLabel laDate = new SpanLabel("" + accessoire.getDatePublication());
-            dataContainer = TableLayout.encloseIn(2,
+            /*dataContainer = TableLayout.encloseIn(2,
                     prixLab,
                     lePrix,
                     dsc,
@@ -89,13 +91,34 @@ public class DetailProduit {
                     categorieLab,
                     laCateg,
                     dateLab,
+                    laDate);*/
+            dataContainer.addAll(prixLab,
+                    lePrix,
+                    dsc,
+                    laDescription,
+                    qteLab,
+                    laQte,
+                    categorieLab,
+                    laCateg,
+                    dateLab,
                     laDate);
-
+            //ce ci est pour le footer qui va contenir les coordonner de l'annonceur ainsi que publier sur fb
+            Container footerContainer = new Container(new BorderLayout());
+            Button contacterAnnonceur = new Button("Contatcter l'annonceur");
+            contacterAnnonceur.addActionListener((evt) -> {
+                contacterAnnonceur.setVisible(false);
+                User temps = accessoireService.getAnnonceur(accessoire.getIdMembre());
+                SpanLabel test = new SpanLabel(temps.getUsername());
+                footerContainer.add(BorderLayout.WEST, new Label("Adresse Email :"));
+                footerContainer.add(BorderLayout.EAST, new Label(temps.getEmail()));
+            });
+            footerContainer.add(BorderLayout.WEST, contacterAnnonceur);
             //ajout a notre form
             this.hi.setTitle(accessoire.getNom());
             this.hi.add(photoContainer);
             this.hi.add(new Label(""));
             this.hi.add(dataContainer);
+            this.hi.add(footerContainer);
         } else {//C-a-d que le produit est une nourriture
 
         }

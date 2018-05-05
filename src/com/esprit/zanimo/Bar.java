@@ -5,26 +5,21 @@
  */
 package com.esprit.zanimo;
 
-import com.codename1.components.ImageViewer;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
-import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 
 import com.esprit.gui.users.AjouterAccessoire;
-import com.esprit.gui.users.AjouterFs;
 import com.esprit.gui.users.*;
 
-import com.esprit.entities.animal;
 import com.esprit.gui.FicheDeSoin.afficherFicheDeSoingui;
 import com.esprit.gui.animal.affichergui;
 
 import com.esprit.gui.users.AffichageProfessionnel;
 import com.esprit.gui.users.AjouterFs;
-import com.esprit.services.animal.animalservices;
 
 /**
  *
@@ -64,11 +59,18 @@ public class Bar {
                 ajouterAccessoire.hi.show();
             }
         });
-        tb.addMaterialCommandToSideMenu("Annonce", FontImage.MATERIAL_HOME, new ActionListener() {
+        tb.addMaterialCommandToSideMenu("Publier une annonce", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 AjouterAccessoire ajouterAccessoire = new AjouterAccessoire();
                 ajouterAccessoire.getHi().show();
+            }
+        });
+        tb.addMaterialCommandToSideMenu("Gerer mes annonce", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                GererMesAnnonces gererAccessoire = new GererMesAnnonces();
+                gererAccessoire.getHi().show();
             }
         });
         tb.addMaterialCommandToSideMenu("Concours", FontImage.MATERIAL_HOME, new ActionListener() {
@@ -91,6 +93,20 @@ public class Bar {
             public void actionPerformed(ActionEvent evt) {
                 afficherFicheDeSoingui aj = new afficherFicheDeSoingui();
                 aj.getHi().show();
+            }
+        });
+        tb.addMaterialCommandToSideMenu("F.A.Q", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                FaqClient faq = new FaqClient();
+                faq.getHi().show();
+            }
+        });
+        tb.addMaterialCommandToSideMenu("Question en suspens", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                QuestionEnSusens faq = new QuestionEnSusens();
+                faq.getHi().show();
             }
         });
     }

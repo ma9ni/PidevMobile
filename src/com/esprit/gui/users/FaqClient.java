@@ -1,0 +1,72 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.esprit.gui.users;
+
+import com.codename1.components.SpanLabel;
+import com.codename1.ui.Button;
+import com.codename1.ui.Command;
+import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
+import com.codename1.ui.Label;
+import com.codename1.ui.TextArea;
+import com.codename1.ui.Toolbar;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.layouts.BoxLayout;
+import com.esprit.entities.Question;
+import com.esprit.services.user.FaqServices;
+import com.esprit.zanimo.Bar;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Ahmed
+ */
+public class FaqClient extends Bar {
+
+    FaqServices faqservice;
+
+    public FaqClient() {
+        super();
+        int deviceWidth = Display.getInstance().getDisplayWidth();
+        this.hi.setTitle("Foire aux questions");
+        faqservice = new FaqServices();
+        for (Question question : faqservice.getList2()) {
+            SpanLabel questionLabel = new SpanLabel("Q " + question.getQuestion());
+            SpanLabel reponseLabel = new SpanLabel(" -> " + question.getIdReponse().getReponse());
+            questionLabel.getAllStyles().setFgColor(0x00ff00);
+
+            this.hi.addAll(questionLabel, reponseLabel);
+        }
+        //pour la description de l'accesoire
+        Label votreQuestionLabel = new Label("Votre Question : ");
+        TextArea votreQuestionArea = new TextArea(2, 20);
+        Container descriptionContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Button endahBtn = new Button("Poster");
+        endahBtn.setWidth(deviceWidth);
+        endahBtn.addActionListener((evt) -> {
+            Question laQuestionPropose = new Question();
+            laQuestionPropose.setQuestion(votreQuestionArea.getText());
+            faqservice.posterQuestion(laQuestionPropose);
+            if (Dialog.show("Felicitation", "Merci, votre question est proposer a notre comité ", "ok", null)) {
+                FaqClient passe = new FaqClient();
+                passe.getHi().show();
+            }
+        });
+        descriptionContainer.add(votreQuestionLabel);
+        descriptionContainer.add(votreQuestionArea);
+        descriptionContainer.add(endahBtn);
+        Button proposerQuestion = new Button("Proposer une question ");
+        proposerQuestion.setWidth(deviceWidth);
+        proposerQuestion.addActionListener((evt) -> {
+            this.hi.removeAll();
+            this.hi.refreshTheme();
+            this.hi.add(descriptionContainer);
+        });
+        this.hi.add(proposerQuestion);
+    }
+
+}
