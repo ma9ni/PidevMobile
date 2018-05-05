@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/com/esprit/services/user/AccessoireServices.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>42</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/entities/sosDisparition.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/Reclamation.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/AffichageUneAnnonceAdoptionGui.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/entities/User.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/AffichageAdoptionGui.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/ContactAnnonceur.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/services/user/UsersServices.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/zanimo/Bar.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/AffichageProfessionnel.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/Loginn.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/services/FicheDeDressage/FicheDeDressageService.java</file>
+            <file>file:/C:/Users/Ahmed/Documents/NetBeansProjects/PidevMobile/src/com/esprit/services/user/UsersServices.java</file>
         </group>
     </open-files>
 </project-private>
