@@ -14,6 +14,7 @@ import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BoxLayout;
 import com.esprit.entities.Adoption;
+import com.esprit.entities.User;
 import com.esprit.entities.animal;
 import com.esprit.gui.home.Homegui;
 import com.esprit.services.Adoption.AdoptionService;
@@ -59,7 +60,7 @@ public class AjoutAdoptionGui extends Bar{
 
         ButtonAjout.addActionListener((evt) -> {
             animal a = anim.get(cmb.getSelectedIndex());
-            Adoption adoption = new Adoption(0, lieu.getText(), description.getText()
+            Adoption adoption = new Adoption(User.getUserConncter(), lieu.getText(), description.getText()
                     , type.getSelectedItem().toString(), a);
              Dialog.show("felicitation", " votre annonce d'adoption est Ajouter", "ok", null);
              

@@ -10,6 +10,7 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
+import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
 import com.esprit.entities.Adoption;
 import com.esprit.entities.User;
@@ -48,10 +49,26 @@ public class AffichageAdoptionGui extends Bar{
 
             AdoptionService serviceTask=new AdoptionService();
                for (Adoption t : serviceTask.getList2()) {
-                           Container c= new Container(BoxLayout.x());
+                           
+                   Container c= new Container(BoxLayout.x());
+                   Container c2= new Container(BoxLayout.y());
+                   Label titre =new Label();
+                   if (t.getType().equals("deleger")) {
+                       titre.setText("pour l'adopter definitivement");
+                   }else{
+                       titre.setText("pour l'adopter temporairement");
+                   }
+        
+                       titre.addPointerPressedListener((evt) -> {
+                           AffichageUneAnnonceAdoptionGui af =new AffichageUneAnnonceAdoptionGui(t);
+                           af.getHi().show();
+                       });
 
                    c.add(enc);
-                   c.add(t.getDescription());
+                   c2.add(titre);
+                   c2.add(t.getDescription());
+                   c.add(c2);
+
                    hi.add(c);
                }
 

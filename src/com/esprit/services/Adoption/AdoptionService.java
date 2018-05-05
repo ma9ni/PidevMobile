@@ -12,6 +12,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.esprit.entities.Adoption;
+import com.esprit.entities.User;
 import com.esprit.entities.animal;
 import com.esprit.gui.users.AjouterFs;
 import com.esprit.services.animal.animalservices;
@@ -47,6 +48,7 @@ public class AdoptionService {
                 System.out.println(id);
                 e.setIdAdoption((int) id);
                 e.setDescription(description);
+                e.setType((String) obj.get("type"));
                 //e.setId(Integer.parseInt(obj.get("id").toString().trim()));
                 System.out.println(e);
                 listEtudiants.add(e);
@@ -106,4 +108,39 @@ public class AdoptionService {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listanimal;
     }
+
+
+//public Adoption getAdoption(int ) {
+//    ConnectionRequest con = new ConnectionRequest();
+//        con.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/allAdoption");  
+//        con.addResponseListener(new ActionListener<NetworkEvent>() {
+//            @Override
+//            public void actionPerformed(NetworkEvent evt) {
+//                AdoptionService ser = new AdoptionService();
+//                listAdoptions = ser.getListAdoption(new String(con.getResponseData()));
+//            }
+//        });
+//        NetworkManager.getInstance().addToQueueAndWait(con);
+//        return listAdoptions;
+//}
+
+    
+    public void ajoutReclamation(int idAdoption , String Sujet, String message){
+        
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/AjoutReclamation?idAdoption="+idAdoption
+        +"&Sujet="+Sujet+"&message="+message+"&idUser="+User.getUserConncter().getId());
+        con.addResponseListener((e) -> {
+            //String str = new String(con.getResponseData());
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+                System.out.println("lajout de reclamatin est effectuer");
+
+   
+    
+    }
+        
+        
+        
+    
 }

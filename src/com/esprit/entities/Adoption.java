@@ -15,7 +15,7 @@ import java.util.Date;
 public class Adoption {
 
     private int idAdoption;
-    private int idMembre;
+    private User idMembre;
     private Date dateAnnonce;
     private String lieu;
     private int etatAdoption;
@@ -27,7 +27,7 @@ public class Adoption {
     public Adoption() {
     }
 
-    public Adoption(int idMembre, String lieu, String description, String type, animal idAnimal) {
+    public Adoption(User idMembre, String lieu, String description, String type, animal idAnimal) {
         this.idMembre = idMembre;
         this.lieu = lieu;
         this.description = description;
@@ -35,7 +35,7 @@ public class Adoption {
         this.idAnimal = idAnimal;
     }
 
-    public Adoption(int idMembre, Date dateAnnonce, String lieu, int etatAdoption, String description) {
+    public Adoption(User idMembre, Date dateAnnonce, String lieu, int etatAdoption, String description) {
         this.idMembre = idMembre;
         this.dateAnnonce = dateAnnonce;
         this.lieu = lieu;
@@ -77,11 +77,11 @@ public class Adoption {
         this.idAdoption = idAdoption;
     }
 
-    public int getIdMembre() {
+    public User getIdMembre() {
         return idMembre;
     }
 
-    public void setIdMembre(int idMembre) {
+    public void setIdMembre(User idMembre) {
         this.idMembre = idMembre;
     }
 
