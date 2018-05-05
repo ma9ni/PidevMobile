@@ -169,4 +169,9 @@ public class FicheDeDressage {
         this.etat = etat;
     }
 
+    @Override
+    public String toString() {
+        return "FicheDeDressage{" + "id=" + id + ", id_membre=" + id_membre + ", specialite=" + specialite + ", displine=" + displine + ", obeissance=" + obeissance + ", accompagnement=" + accompagnement + ", interception=" + interception + ", noteTotal=" + noteTotal + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", id_animal=" + id_animal + ", etat=" + etat + '}';
+    }
+
 }

@@ -14,6 +14,7 @@ import com.codename1.ui.events.ActionListener;
 import com.esprit.entities.FicheDeDressage;
 import com.esprit.entities.animal;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,33 +29,35 @@ public class FicheDeDressageService {
 
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
     Date d;
+    private String message;
 
     public void ajoutfichedeDressage(FicheDeDressage ta) {
 
-//        ConnectionRequest con = new ConnectionRequest();
-//
-//        String datdebu = formater.format(ta.getProchainRDV());
-//
-//        String Url = "http://localhost/pi_dev-master/web/app_dev.php/newfiche?" + "&observation=" + ta.getObservation() + "&medicament=" + ta.getMedicament() + "&dateCreation=" + ta.getDateCreation() + "&prochainRDV=" + datdebu + "&etat=" + ta.getEtat() + "&id_animal=" + ta.getId_animal().getId() + "&id_membre=" + ta.getId_membre().getId();
-//        con.setUrl(Url);
-//
-//        System.out.println("tt");
-//
-//        System.out.println("111111111" + Url);
-//        con.addResponseListener((e) -> {
-//            String str = new String(con.getResponseData());
-//            System.out.println(str);
-//            System.out.println("222222222" + str);
-//            System.out.println("333333333" + Url);
-////            if (str.trim().equalsIgnoreCase("OK")) {
-////                f2.setTitle(tlogin.getText());
-////             f2.show();
-////            }
-////            else{
-////            Dialog.show("error", "login ou pwd invalid", "ok", null);
-////            }
-//        });
-//        NetworkManager.getInstance().addToQueueAndWait(con);
+        ConnectionRequest con = new ConnectionRequest();
+
+        String datdebu = formater.format(ta.getDateDebut());
+        String datfin = formater.format(ta.getDateFin());
+
+        String Url = "http://localhost/pi_dev-master/web/app_dev.php/ajouterfichededress?" + "&specialite=" + ta.getSpecialite() + "&id_membre=" + ta.getId_membre().getId() + "&id_animal=" + ta.getId_animal().getId() + "&accompagnement=" + ta.getAccompagnement() + "&obeissance=" + ta.getObeissance() + "&displine=" + ta.getDispline() + "&interception=" + ta.getInterception() + "&noteTotale=" + ta.getNoteTotal() + "&dateDebut=" + datdebu + "&dateFin=" + datfin;
+        con.setUrl(Url);
+
+        System.out.println("tt");
+
+        System.out.println("111111111" + Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            System.out.println("222222222" + str);
+            System.out.println("333333333" + Url);
+//            if (str.trim().equalsIgnoreCase("OK")) {
+//                f2.setTitle(tlogin.getText());
+//             f2.show();
+//            }
+//            else{
+//            Dialog.show("error", "login ou pwd invalid", "ok", null);
+//            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
     }
 
     public ArrayList<FicheDeDressage> getListFicheDeDressage(String json) {
@@ -148,6 +151,27 @@ public class FicheDeDressageService {
             System.out.println("333333333" + Url);
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+
+    public void supprimerficheDeDressage(FicheDeDressage ta) {
+
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/dellficheDeDressage/" + ta.getId());
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                try {
+                    message = new String(con.getResponseData(), "utf-8");
+                    System.out.println("message" + message);
+                } catch (UnsupportedEncodingException ex) {
+                    System.out.println(ex.toString());
+                }
+            }
+
+        });
+
+        NetworkManager.getInstance().addToQueueAndWait(con);
+
     }
 
 }

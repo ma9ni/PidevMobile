@@ -24,12 +24,13 @@ import java.util.Date;
  *
  * @author makni
  */
-public class ModifierFicheDeDressage extends Bar {
+public class ModifierFicheDeDressageGUI extends Bar {
 
     Button btn;
+    Button supp;
     FicheDeDressageService dressageService = new FicheDeDressageService();
 
-    public ModifierFicheDeDressage(FicheDeDressage fsDeDressage) {
+    public ModifierFicheDeDressageGUI(FicheDeDressage fsDeDressage) {
 
         super();
         this.hi.setTitle("Fiche de Dressage N°:" + fsDeDressage.getId());
@@ -52,6 +53,7 @@ public class ModifierFicheDeDressage extends Bar {
         val.addConstraint(interception, new NumericConstraint(true));
 //        val.addConstraint(noteTotal, new NumericConstraint(true));
         btn = new Button("modifier");
+        supp = new Button("supprimer");
         f.add(tl.createConstraint().widthPercentage(60), specialite);
         f.add(tl.createConstraint().widthPercentage(40), obeissance);
         f.add(tl.createConstraint().widthPercentage(40), accompagnement);
@@ -74,10 +76,16 @@ public class ModifierFicheDeDressage extends Bar {
         dateFin.getPicker().setDate(fsDeDressage.getDateFin());
         hi.add(f);
         hi.add(btn);
+        hi.add(supp);
         btn.addActionListener((evt) -> {
 
             FicheDeDressage fsmodifier = new FicheDeDressage(fsDeDressage.getId(), specialite.getField().getText(), Float.parseFloat(displine.getField().getText()), Float.parseFloat(obeissance.getField().getText()), Float.parseFloat(accompagnement.getField().getText()), Float.parseFloat(interception.getField().getText()), noteTotal, dateDebut.getPicker().getDate(), dateFin.getPicker().getDate());
             dressageService.modifierfichedeSoin(fsmodifier);
+        });
+        supp.addActionListener((evt) -> {
+            dressageService.supprimerficheDeDressage(fsDeDressage);
+            afficherFicheDeDressageGUI aj = new afficherFicheDeDressageGUI();
+            aj.getHi().show();
         });
     }
 
