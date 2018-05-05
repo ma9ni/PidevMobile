@@ -12,6 +12,9 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.esprit.entities.Adoption;
+import com.esprit.entities.animal;
+import com.esprit.gui.users.AjouterFs;
+import com.esprit.services.animal.animalservices;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +43,10 @@ public class AdoptionService {
 
                 // System.out.println(obj.get("id"));
                 float id = Float.parseFloat(obj.get("idAdoption").toString());
+                String description =(String) obj.get("description");
                 System.out.println(id);
                 e.setIdAdoption((int) id);
+                e.setDescription(description);
                 //e.setId(Integer.parseInt(obj.get("id").toString().trim()));
                 System.out.println(e);
                 listEtudiants.add(e);
@@ -72,4 +77,33 @@ public class AdoptionService {
         return listAdoptions;
     }
     
+    
+    public void AjouterAdoption(Adoption adoption){
+        String type="donner" ;
+        if (adoption.getType().equals("Donner temporairement votre animal")) {
+            type="deleger";
+            
+        }
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/AjoutAdoption_mobile?description="
+                +adoption.getDescription()+"&lieu="+adoption.getLieu()+"&id_animal="
+                +adoption.getIdAnimal().getId()+"&type="+type);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+        });
+        System.out.println("lajout de l'annonce d'adoption  est effectuee");
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    ArrayList<animal> listanimal = new ArrayList<>();
+
+    public ArrayList<animal> getListanimal2(int id) {
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/listeAnimalUserMobile/"+id);
+        con.addResponseListener((NetworkEvent evt) -> {
+            animalservices ser = new animalservices();
+            listanimal = ser.getListTask(new String(con.getResponseData()));
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return listanimal;
+    }
 }

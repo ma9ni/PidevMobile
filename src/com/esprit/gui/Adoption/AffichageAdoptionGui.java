@@ -6,9 +6,17 @@
 package com.esprit.gui.Adoption;
 
 import com.codename1.components.SpanLabel;
+import com.codename1.ui.Button;
+import com.codename1.ui.Container;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
+import com.codename1.ui.layouts.BoxLayout;
+import com.esprit.entities.Adoption;
+import com.esprit.entities.User;
 import com.esprit.services.Adoption.AdoptionService;
 import com.esprit.zanimo.Bar;
+import java.io.IOException;
+
 
 /**
  *
@@ -18,32 +26,34 @@ public class AffichageAdoptionGui extends Bar{
     
   //   Form f;
     SpanLabel lb;
+        private EncodedImage enc;
+
         public AffichageAdoptionGui() {
         super();
        // f = new Form();
-        lb = new SpanLabel("");
-        hi.add(lb);
-            AdoptionService serviceTask=new AdoptionService();
-        lb.setText(""+serviceTask.getList2().get(0).getIdAdoption());
-        /*/
-        ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://41.226.11.243:10004/tasks/");
-        NetworkManager.getInstance().addToQueue(con);
-        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            Button BAjout= new Button("ajouter votre Annonce");
+            BAjout.addActionListener((evt) -> {
+               AjoutAdoptionGui h= new AjoutAdoptionGui();
+                           h.getHi().show();
 
-            @Override
-            public void actionPerformed(NetworkEvent evt) {
-                ServiceTask ser = new ServiceTask();
-                List<Task> list = ser.getListTask(new String(con.getResponseData()));
-                System.out.println("sana");
-                System.out.println(list);
-                lb.setText(list.toString());
-               
-                System.out.println(lb.getText());
-                f.refreshTheme();
-            }
-        });
-        //*/
+            });
+       
+        lb = new SpanLabel("");
+        hi.add(BAjout);
+        hi.add(lb);
+        try {
+            enc = EncodedImage.create("/s1.jpg");
+        } catch (IOException ex) {
+        }
+
+            AdoptionService serviceTask=new AdoptionService();
+               for (Adoption t : serviceTask.getList2()) {
+                           Container c= new Container(BoxLayout.x());
+
+                   c.add(enc);
+                   c.add(t.getDescription());
+                   hi.add(c);
+               }
 
       
          

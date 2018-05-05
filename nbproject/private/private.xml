@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/AffichageAdoptionGui.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/entities/User.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/AjoutAdoptionGui.java</file>
             <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/services/user/UsersServices.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/entities/FicheDeSoin.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/home/Homegui.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/home/Produitsgui.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/AjouterFs.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/zanimo/Bar.java</file>
-            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/entities/Adoption.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/Login.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/inscription.java</file>
             <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/services/Adoption/AdoptionService.java</file>
-=======
-            <file>file:/F:/netbeansProject/PiDevMobile/src/com/esprit/gui/home/Homegui.java</file>
-            <file>file:/F:/netbeansProject/PiDevMobile/src/com/esprit/gui/users/AjouterFs.java</file>
-            <file>file:/F:/netbeansProject/PiDevMobile/src/com/esprit/gui/users/AffichageProfessionnel.java</file>
-            <file>file:/F:/netbeansProject/PiDevMobile/src/com/esprit/zanimo/Bar.java</file>
-            <file>file:/F:/netbeansProject/PiDevMobile/src/com/esprit/entities/User.java</file>
-            <file>file:/F:/netbeansProject/PiDevMobile/src/com/esprit/services/user/UsersServices.java</file>
->>>>>>> 597570462e4ea2aad98f18c6385b503f5c2cf11f
         </group>
     </open-files>
 </project-private>
