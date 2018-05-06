@@ -28,6 +28,7 @@ import com.esprit.gui.home.Homegui;
 import com.esprit.services.user.UsersServices;
 import com.esprit.zanimo.Bar;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -199,13 +200,13 @@ public   Button loginWG;
                  user.setId(userId);
                 user.setPasword(users.get("password").toString());
             user.setEmail(users.get("email").toString());
-//            user.setAdresse(users.get("adresse").toString());
+//          user.setAdresse(users.get("adresse").toString());
             user.setImage(users.get("image").toString());
-            user.setRole(users.get("roles").toString());
             user.setUsername(users.get("username").toString());
                
                           
-
+                ArrayList<String> UserRole = (ArrayList<String>) users.get("roles");
+                user.setRole(UserRole.get(0));
                
                 
             

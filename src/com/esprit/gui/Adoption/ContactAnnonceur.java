@@ -12,6 +12,7 @@ import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BoxLayout;
 import com.esprit.entities.User;
+import com.esprit.services.Adoption.AdoptionService;
 import com.esprit.zanimo.Bar;
 
 /**
@@ -30,6 +31,10 @@ public class ContactAnnonceur extends Bar{
         
         
         Button BenvoyerMessage = new Button("Envoyer le message");
+        BenvoyerMessage.addActionListener((evt) -> {
+            AdoptionService as = new AdoptionService();
+            as.envoyerMessage();
+        });
         
         
         Container c=  new Container(BoxLayout.y());

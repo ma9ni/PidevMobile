@@ -41,7 +41,7 @@ public class Bar {
     protected Resources theme;
 
     public Bar() {
-        /*theme = UIManager.initFirstTheme("/theme");*/
+        theme = UIManager.initFirstTheme("/theme");
         hi = new Form("Best Pets");
 //        ImageViewer limage = new ImageViewer();
 //        limage.setImage(theme.getImage("1.jpg"));

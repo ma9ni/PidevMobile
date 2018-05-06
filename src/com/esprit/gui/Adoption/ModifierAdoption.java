@@ -5,15 +5,17 @@
  */
 package com.esprit.gui.Adoption;
 
-import com.codename1.components.ImageViewer;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BoxLayout;
 import com.esprit.entities.Adoption;
+import com.esprit.services.Adoption.AdoptionService;
 import com.esprit.zanimo.Bar;
 import java.io.IOException;
 
@@ -21,11 +23,12 @@ import java.io.IOException;
  *
  * @author user
  */
-public class AffichageUneAnnonceAdoptionGui extends Bar{
-            private EncodedImage enc;
+public class ModifierAdoption extends Bar{
+                private EncodedImage enc;
 
-    public AffichageUneAnnonceAdoptionGui (Adoption adoption){
-        super();
+    
+    public ModifierAdoption(Adoption adoption){
+             super();
         
          try {
             enc = EncodedImage.create("/s1.jpg");
@@ -38,7 +41,6 @@ public class AffichageUneAnnonceAdoptionGui extends Bar{
 
          Label race=new Label("race animal: "+adoption.getIdAnimal().getRace());
          Label nom=new Label("nom animal: "+adoption.getIdAnimal().getNom());
-         Label Lieu=new Label("Lieu : "+adoption.getLieu());
          
          
          
@@ -54,35 +56,47 @@ public class AffichageUneAnnonceAdoptionGui extends Bar{
 
              
          }
-        Label description = new Label(adoption.getDescription());
-        Label lieu = new Label(adoption.getLieu());
-        Button ButtonReclamation = new  Button("Signialer l'annonce");
-        Button ButtonContact = new  Button("Contacter l'annonceur");
-        
-        ButtonContact.addActionListener((evt) -> {
+         
+         Label ldes=new Label("description");
+         Label llieu=new Label("lieu");
+        TextField description = new TextField(adoption.getDescription());
+        TextField lieu = new TextField(adoption.getLieu());
+        Button modifierButton = new Button("modifier");
+        modifierButton.addActionListener((evt) -> {
             
-            ContactAnnonceur c =new ContactAnnonceur(adoption.getIdMembre());
-            c.getHi().show();
-        });
-        ButtonReclamation.addActionListener((evt) -> {
             
-            Reclamation c =new Reclamation(adoption);
-            c.getHi().show();
+            Adoption a = new Adoption();
+            System.out.println("c'est l'd adoption "+adoption.getIdAdoption());
+            a.setIdAdoption(adoption.getIdAdoption());
+            a.setDescription(description.getText());
+            a.setLieu(lieu.getText());
+            
+            AdoptionService as = new AdoptionService();
+            as.modifierAdoption(a);
+            System.out.println("modification effectuer avec sucess");
+            Dialog.show("Sucess", "modification effectuer avec suces", "ok", "cancel");
+               AfficheVosAnnonce av =new AfficheVosAnnonce();
+av.getHi().show(); 
+            
+
         });
-        
+       
         Container c =new Container(BoxLayout.y());
         c.add(l1);
         c.add(i);
         c.add(race);
         c.add(nom);
-        c.add(Lieu);
-        
+        c.add(ldes);
         c.add(description);
-        c.add(ButtonContact);
-        c.add(ButtonReclamation);
+        c.add(llieu);
+        c.add(lieu);
+        c.add(modifierButton);
+    
         hi.add(c);
         hi.show();
         
     }
+    }
     
-}
+    
+    

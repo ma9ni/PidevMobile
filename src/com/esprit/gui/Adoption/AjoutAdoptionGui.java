@@ -48,7 +48,7 @@ public class AjoutAdoptionGui extends Bar{
        ArrayList<animal> anim = new ArrayList<>();
 
        AdoptionService ad = new AdoptionService();
-        anim.addAll(ad.getListanimal2(6));
+        anim.addAll(ad.getListanimal2());
 
         for (animal object : anim) {
             cmb.addItem(object.getNom());
