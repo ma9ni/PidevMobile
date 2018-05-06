@@ -35,4 +35,9 @@ public class Accessoire extends Produit {
         this.qteStock = qteStock;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "Accessoire{" + "qteStock=" + qteStock + '}';
+    }
+
 }
