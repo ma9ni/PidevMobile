@@ -6,6 +6,7 @@
 package com.esprit.gui.home;
 
 import com.codename1.ui.Label;
+
 import com.esprit.zanimo.Bar;
 
 /**
@@ -17,7 +18,8 @@ public class Homegui extends Bar {
     public Homegui() {
 
         super();
-        Label l = new Label("ddddddddd");
+
+        Label l = new Label("Hello Zanimo");
         this.hi.add(l);
     }
 

@@ -8,25 +8,47 @@ package com.esprit.entities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 /**
  *
  * @author salah
  */
 public class animal {
-     private int id;
-    private int id_membre;
-     private String nom ;
+
+    private int id;
+    private User id_membre;
+    private String nom;
     private String nomproprietaire;
-         private String description;
-          private String  sexe;
-          private Date datedenaissance;
-           private String race;
-           private String image;
-           
-           
-           
+    private String description;
+    private String sexe;
+    private Date datedenaissance;
+    private String race;
+    private String image;
+
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+
+    public animal() {
+    }
+
+    public animal(int id, User id_membre, String nom, String nomproprietaire, String description, String sexe, Date datedenaissance, String race, String image) {
+        this.id = id;
+        this.id_membre = id_membre;
+        this.nom = nom;
+        this.nomproprietaire = nomproprietaire;
+        this.description = description;
+        this.sexe = sexe;
+        this.datedenaissance = datedenaissance;
+        this.race = race;
+        this.image = image;
+    }
+
+    public animal(int id, String nom, String description) {
+        this.id = id;
+
+        this.nom = nom;
+
+        this.description = description;
+
+    }
 
     public int getId() {
         return id;
@@ -36,11 +58,11 @@ public class animal {
         this.id = id;
     }
 
-    public int getId_membre() {
+    public User getId_membre() {
         return id_membre;
     }
 
-    public void setId_membre(int id_membre) {
+    public void setId_membre(User id_membre) {
         this.id_membre = id_membre;
     }
 
@@ -76,14 +98,6 @@ public class animal {
         this.sexe = sexe;
     }
 
-    public Date getDatedenaissance() {
-        return datedenaissance;
-    }
-
-    public void setDatedenaissance(Date datedenaissance) {
-        this.datedenaissance = datedenaissance;
-    }
-
     public String getRace() {
         return race;
     }
@@ -108,12 +122,17 @@ public class animal {
         this.formater = formater;
     }
 
+    public Date getDatedenaissance() {
+        return datedenaissance;
+    }
+
+    public void setDatedenaissance(Date datedenaissance) {
+        this.datedenaissance = datedenaissance;
+    }
+
     @Override
     public String toString() {
         return "animal{" + "id=" + id + ", id_membre=" + id_membre + ", nom=" + nom + ", nomproprietaire=" + nomproprietaire + ", description=" + description + ", sexe=" + sexe + ", datedenaissance=" + datedenaissance + ", race=" + race + ", image=" + image + ", formater=" + formater + '}';
     }
-    
-    
-          
-    
+
 }
