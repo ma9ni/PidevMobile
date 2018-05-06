@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/gui/users/AfficherUserGui.java</file>
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/gui/users/Loginn.java</file>
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/gui/FicheDeSoin/ModifierFicheDeSoingui.java</file>
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/services/FicheDeDressage/FicheDeDressageService.java</file>
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/gui/FicheDeSoin/afficherFicheDeSoingui.java</file>
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/services/FicheDeSoin/FicheDeSoinService.java</file>
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/gui/users/AffichageProfessionnel.java</file>
-=======
-            <file>file:/C:/Users/Ahmed/Documents/NetBeansProjects/PidevMobile/src/com/esprit/gui/users/DetailProduit.java</file>
->>>>>>> c943b1202b197a6660dae29d1f237606bc8fd58a
+            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/services/Adoption/AdoptionService.java</file>
+            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/services/animal/animalservices.java</file>
         </group>
     </open-files>
 </project-private>
