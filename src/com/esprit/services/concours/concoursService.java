@@ -71,6 +71,10 @@ public class concoursService {
                 float datefloat = Float.parseFloat(datedebutjson.get("timestamp").toString());
                 Date l = new Date((long) datefloat * 1000);
 
+                Map<String, Object> datefinjson = (Map<String, Object>) obj.get("dateFin");
+                float datefinfloat = Float.parseFloat(datefinjson.get("timestamp").toString());
+                Date dfdf = new Date((long) datefinfloat * 1000);
+                c.setDateFin(dfdf);
                 // e.setDatedenaissance(obj.get("datedenaissance.timezone.transitions.0.time").toString());
                 // String datestr = ((Map) ((Map) ((Map) obj.get("datedenaissance")).get("timezone")).get("transitions")).get("time").toString();
                 // System.out.println("OBJ " + obj);
@@ -120,6 +124,17 @@ public class concoursService {
             String str = new String(con.getResponseData());
         });
         System.out.println("le concours est ajouter a notre BD");
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+
+    //la suppression d'un concours
+    public void supprimerConcours(int idConcour) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/symfony/pi_dev/web/app_dev.php/Concours/mob_supp/" + idConcour;
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+        });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
 

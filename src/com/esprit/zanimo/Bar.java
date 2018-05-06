@@ -17,6 +17,7 @@ import com.esprit.entities.animal;
 import com.esprit.gui.animal.affichergui;
 import com.esprit.gui.concours.AjouterConcours;
 import com.esprit.gui.concours.AffichageConcours;
+import com.esprit.gui.concours.ParticiperConcours;
 
 import com.esprit.gui.users.AffichageProfessionnel;
 import com.esprit.gui.users.AjouterFs;
@@ -86,6 +87,14 @@ public class Bar {
             public void actionPerformed(ActionEvent evt) {
                 AjouterConcours aj = new AjouterConcours();
                 aj.getHi().show();
+            }
+        });
+
+        tb.addMaterialCommandToSideMenu("afficher concours user", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                ParticiperConcours pc = new ParticiperConcours();
+                pc.getHi().show();
             }
         });
     }

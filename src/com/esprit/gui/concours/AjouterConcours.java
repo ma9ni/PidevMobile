@@ -88,7 +88,7 @@ public class AjouterConcours extends Bar {
         ddContainer.add(ddEror);
 
         //pour la date de fin  du concours
-        Label dfLabel = new Label("date debut");
+        Label dfLabel = new Label("date Fin");
         Picker dfPicker = new Picker();
         Label dfEror = new Label("*");
         dfEror.getAllStyles().setFgColor(0xff0000);
@@ -123,6 +123,7 @@ public class AjouterConcours extends Bar {
         Container btnContainer = new Container(new BoxLayout(BoxLayout.X_AXIS));
         btnContainer.add(btnValider);
 
+        this.hi.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
         this.hi.add(titreContainer);
         this.hi.add(TypeContainer);
         this.hi.add(raceContainer);

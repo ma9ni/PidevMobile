@@ -109,7 +109,7 @@ public class animal {
 
     @Override
     public String toString() {
-        return "animal{" + "id=" + id + ", id_membre=" + id_membre + ", nom=" + nom + ", nomproprietaire=" + nomproprietaire + ", description=" + description + ", sexe=" + sexe + ", datedenaissance=" + datedenaissance + ", race=" + race + ", image=" + image + ", formater=" + formater + '}';
+        return nom;
     }
 
 }

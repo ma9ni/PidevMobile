@@ -17,7 +17,7 @@ public class Homegui extends Bar {
     public Homegui() {
 
         super();
-        Label l = new Label("ddddddddd");
+        Label l = new Label("HELLO ZANIMO");
         this.hi.add(l);
     }
 

@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/gui/concours/AffichageConcours.java</file>
             <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/services/concours/concoursService.java</file>
-            <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/gui/animal/affichergui.java</file>
-            <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/services/FicheDeSoin/FicheDeSoinService.java</file>
-            <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/entities/concours.java</file>
-            <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/gui/concours/concoursGUI.java</file>
+            <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/gui/concours/AjouterConcours.java</file>
+            <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/services/concours/participationService.java</file>
+            <file>file:/C:/Users/angham/Desktop/piweeb_zanimo/PidevMobile/src/com/esprit/gui/concours/ParticiperConcours.java</file>
         </group>
     </open-files>
 </project-private>
