@@ -20,6 +20,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.Style;
 import com.esprit.entities.Accessoire;
+import com.esprit.entities.User;
 import com.esprit.services.user.AccessoireServices;
 import com.esprit.zanimo.Bar;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class GererMesAnnonces extends Bar {
         this.hi.setTitle("Mes Annonces");
         AccessoireServices accessoireService = new AccessoireServices();
         ArrayList<Accessoire> listeAccessoire = new ArrayList<>();
-        listeAccessoire = accessoireService.mesAccessoires(1);
+        listeAccessoire = accessoireService.mesAccessoires(User.getUserConncter().getId());
         for (Accessoire accessoire : listeAccessoire) {
             //pour la photo de l'accessoire
 

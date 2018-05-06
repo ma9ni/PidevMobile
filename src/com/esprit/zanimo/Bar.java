@@ -165,6 +165,7 @@ public class Bar {
 
             }
         });
+
     }
 
     public Form getHi() {

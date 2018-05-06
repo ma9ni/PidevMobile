@@ -47,11 +47,13 @@ public class AccessoireServices {
                 e.setId((int) id);
                 e.setNom(obj.get("nom").toString());
                 e.setCategorie(obj.get("categorie").toString());
-                e.setPhoto("http://localhost/pi_dev-master/web/uploads/images/" + obj.get("photo").toString());
+                e.setPhoto(obj.get("photo").toString());
                 e.setDescription(obj.get("description").toString());
                 e.setQteStock(obj.get("qutite").toString());
                 e.setPrix(Float.parseFloat(obj.get("prix").toString()));
-                e.setIdMembre(1);
+                Map<String, Object> tempsrep = (Map<String, Object>) obj.get("idMembre");
+                float idmemm = Float.parseFloat(tempsrep.get("id").toString());
+                e.setIdMembre((int) idmemm);
                 listEtudiants.add(e);
             }
 
@@ -86,6 +88,7 @@ public class AccessoireServices {
                 + "&categorie=" + accessoire.getCategorie()
                 + "&validite=" + accessoire.getValiditePublication()
                 + "&photo=" + accessoire.getPhoto()
+                + "&user=" + accessoire.getIdMembre()
                 + "&qte=" + accessoire.getQteStock()
                 + "&qte=" + accessoire.getQteStock();
         con.setUrl(Url);
@@ -123,10 +126,12 @@ public class AccessoireServices {
 
             for (Map<String, Object> obj : list) {
                 User e = new User();
+                float id = Float.parseFloat(obj.get("id").toString());
+                e.setId((int) id);
                 e.setUsername(obj.get("username").toString());
 //                e.setNum_tel(Integer.parseInt(obj.get("num_tel").toString()));
                 e.setEmail(obj.get("email").toString());
-//                e.setAdresse(obj.get("gouvernorat").toString());
+                //e.setAdresse(obj.get("gouvernorat").toString());
                 listAnnonceur.add(e);
             }
         } catch (IOException ex) {
@@ -185,11 +190,13 @@ public class AccessoireServices {
                 e.setId((int) id);
                 e.setNom(obj.get("nom").toString());
                 e.setCategorie(obj.get("categorie").toString());
-                e.setPhoto("http://localhost/pi_dev-master/web/uploads/images/" + obj.get("photo").toString());
+                e.setPhoto(obj.get("photo").toString());
                 e.setDescription(obj.get("description").toString());
                 e.setQteStock(obj.get("qutite").toString());
                 e.setPrix(Float.parseFloat(obj.get("prix").toString()));
-                e.setIdMembre(1);
+                Map<String, Object> tempsrep = (Map<String, Object>) obj.get("idMembre");
+                float idmemm = Float.parseFloat(tempsrep.get("id").toString());
+                e.setIdMembre((int) idmemm);
                 listEtudiants.add(e);
             }
 
@@ -224,6 +231,7 @@ public class AccessoireServices {
                 + "&prix=" + accessoire.getPrix()
                 + "&categorie=" + accessoire.getCategorie()
                 + "&validite=" + accessoire.getValiditePublication()
+                + "&user=" + accessoire.getIdMembre()
                 + "&qte=" + accessoire.getQteStock()
                 + "&qte=" + accessoire.getQteStock();
         con.setUrl(Url);

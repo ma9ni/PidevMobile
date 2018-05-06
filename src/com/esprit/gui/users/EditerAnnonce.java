@@ -13,6 +13,7 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Font;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
@@ -25,6 +26,7 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.esprit.entities.Accessoire;
 import com.esprit.entities.Categorie;
+import com.esprit.entities.User;
 import com.esprit.services.user.AccessoireServices;
 import com.esprit.services.user.CategorieServices;
 import java.util.ArrayList;
@@ -82,7 +84,12 @@ public class EditerAnnonce {
         TextArea descriptionArea = new TextArea(3, 20);
         descriptionArea.setText(accessoire.getDescription());
         Container descriptionContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        descriptionContainer.add(descriptionLabel);
+        Label descriptionEror = new Label("*");
+        descriptionEror.getAllStyles().setFgColor(0xff0000);
+        descriptionEror.setVisible(false);
+        Container hihou = new Container(new BoxLayout(BoxLayout.X_AXIS));
+        hihou.addAll(descriptionLabel, descriptionEror);
+        descriptionContainer.add(hihou);
         descriptionContainer.add(descriptionArea);
 
         //pour le prix de l'accesoire
@@ -121,20 +128,61 @@ public class EditerAnnonce {
         Container stockContainer = new Container(new BoxLayout(BoxLayout.X_AXIS));
         stockContainer.add(stockLabel);
         stockContainer.add(stockBox);
+
+        //pour les message d'erreur qui sera afiicher en bas de page
+        Container stockEtErroContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        stockEtErroContainer.add(stockContainer);
         Button vlaiderButton = new Button("Valider");
         Container footerContainer = new Container(new BorderLayout());
         footerContainer.add(BorderLayout.CENTER, vlaiderButton);
         vlaiderButton.addActionListener((evt) -> {
-            accessoire.setNom(titreArea.getText());
-            accessoire.setDescription(descriptionArea.getText());
-            accessoire.setPrix(Float.parseFloat(prixArea.getText()));
-            accessoire.setCategorie(categorieBox.getSelectedItem().toString());
-            accessoire.setQteStock(stockBox.getSelectedItem().toString());
-            AccessoireServices service = new AccessoireServices();
-            service.modifierAccessoire(accessoire);
-            Dialog.show("felicitation", " votre annonce est modifier", "ok", null);
-            GererMesAnnonces h = new GererMesAnnonces();
-            h.getHi().show();
+            String test = "";
+            if (titreArea.getText() == "") {
+                titreEror.setVisible(true);
+                test = test + "t";
+            }
+            if (descriptionArea.getText() == "") {
+                descriptionEror.setVisible(true);
+                test = test + "d";
+            }
+            try {
+                Float ppp = Float.parseFloat(prixArea.getText());
+            } catch (Exception e) {
+                prixEror.setVisible(true);
+                test = test + "p";
+            }
+            if (test == "") {
+                accessoire.setNom(titreArea.getText());
+                accessoire.setDescription(descriptionArea.getText());
+                accessoire.setPrix(Float.parseFloat(prixArea.getText()));
+                accessoire.setCategorie(categorieBox.getSelectedItem().toString());
+                accessoire.setQteStock(stockBox.getSelectedItem().toString());
+                accessoire.setIdMembre(User.getUserConncter().getId());
+                AccessoireServices service = new AccessoireServices();
+                service.modifierAccessoire(accessoire);
+                Dialog.show("felicitation", " votre annonce est modifier", "ok", null);
+                GererMesAnnonces h = new GererMesAnnonces();
+                h.getHi().show();
+            } else {
+                Label ligne1Eror = new Label();
+                String etror = "Verifier les champs avec '*' ";
+                if (test.indexOf("t") > -1) {
+                    etror = etror + "|Titre";
+                }
+                if (test.indexOf("p") > -1) {
+                    etror = etror + "|Prix";
+                }
+                if (test.indexOf("d") > -1) {
+                    etror = etror + "|Description";
+                }
+                etror = etror + "|";
+                Font smallBoldSystemFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_SMALL);
+                ligne1Eror.setText(etror);
+                ligne1Eror.getAllStyles().setFgColor(0xff0000);
+                ligne1Eror.getAllStyles().setFont(smallBoldSystemFont);
+                stockEtErroContainer.add(ligne1Eror);
+            }
+            this.hi.refreshTheme();
         });
 
         //ajout des differents element a notre forme
@@ -143,7 +191,7 @@ public class EditerAnnonce {
         this.hi.add(descriptionContainer);
         this.hi.add(prixContainer);
         this.hi.add(categorieContainer);
-        this.hi.add(stockContainer);
+        this.hi.add(stockEtErroContainer);
         this.hi.add(footerContainer);
     }
 
