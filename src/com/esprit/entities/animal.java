@@ -16,6 +16,7 @@ public class animal {
 
     private int id;
     private User id_membre;
+
     private String nom;
     private String nomproprietaire;
     private String description;
@@ -23,10 +24,19 @@ public class animal {
     private Date datedenaissance;
     private String race;
     private String image;
+    private int id_membree;
 
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 
     public animal() {
+    }
+
+    public int getId_membree() {
+        return id_membree;
+    }
+
+    public void setId_membree(int id_membree) {
+        this.id_membree = id_membree;
     }
 
     public animal(int id, User id_membre, String nom, String nomproprietaire, String description, String sexe, Date datedenaissance, String race, String image) {
@@ -129,6 +139,13 @@ public class animal {
 
     public void setDatedenaissance(Date datedenaissance) {
         this.datedenaissance = datedenaissance;
+
+    }
+
+    public animal(String nom, String nomproprietaire, String image) {
+        this.nom = nom;
+        this.nomproprietaire = nomproprietaire;
+        this.image = image;
     }
 
     @Override

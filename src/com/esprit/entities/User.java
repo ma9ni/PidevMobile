@@ -27,18 +27,40 @@ public class User {
     private String password_requested_at;
     private String confirmation_token;
     private String last_login;
-
+    private String role;
+    private String Emailofconnecteduser;
+    private static int IdOfConnectedUser =0;
+    private static User userConncter;
+    
     public User() {
     }
+    public User(int id) {
+        this.id = id;
+    }
 
-    public User(String username, String email, String pasword, String image, String adresse, String gouvernorat) {
-        this.username = username;
+    public User(String username, String email, String pasword, String image, String gouvernorat, String role) {
+
+
+
+    
+
+    this.username = username;
         this.email = email;
         this.pasword = pasword;
         this.image = image;
-        this.adresse = adresse;
         this.gouvernorat = gouvernorat;
+        this.role = role;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    
 
     public int getId() {
         return id;
@@ -168,9 +190,37 @@ public class User {
         this.last_login = last_login;
     }
 
+ 
+  
+
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", username=" + username + ", username_canonical=" + username_canonical + ", email_canonical=" + email_canonical + ", email=" + email + ", enabled=" + enabled + ", pasword=" + pasword + ", num_tel=" + num_tel + ", confirmation=" + confirmation + ", image=" + image + ", adresse=" + adresse + ", gouvernorat=" + gouvernorat + ", note=" + note + ", password_requested_at=" + password_requested_at + ", confirmation_token=" + confirmation_token + ", last_login=" + last_login + '}';
     }
+
+    public String getEmailofconnecteduser() {
+        return Emailofconnecteduser;
+    }
+
+    public void setEmailofconnecteduser(String Emailofconnecteduser) {
+        this.Emailofconnecteduser = Emailofconnecteduser;
+    }
+
+    public static int getIdOfConnectedUser() {
+        return IdOfConnectedUser;
+    }
+
+    public static void setIdOfConnectedUser(int IdOfConnectedUser) {
+        User.IdOfConnectedUser = IdOfConnectedUser;
+    }
+
+    public static User getUserConncter() {
+        return userConncter;
+    }
+
+    public static void setUserConncter(User userConncter) {
+        User.userConncter = userConncter;
+    }
+    
 
 }
