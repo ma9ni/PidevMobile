@@ -6,6 +6,8 @@
 package com.esprit.gui.users;
 
 import com.codename1.io.ConnectionRequest;
+import com.codename1.io.FileSystemStorage;
+import com.codename1.io.MultipartRequest;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.Button;
@@ -17,6 +19,7 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
+import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.LayoutStyle;
@@ -24,9 +27,10 @@ import com.codename1.ui.validation.LengthConstraint;
 import com.codename1.ui.validation.Validator;
 import com.codename1.util.StringUtil;
 import com.esprit.entities.User;
-import com.esprit.gui.home.Homegui;
 import com.esprit.services.user.UsersServices;
 import com.esprit.zanimo.Bar;
+import java.io.IOException;
+import java.io.InputStream;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -34,6 +38,8 @@ import org.mindrot.jbcrypt.BCrypt;
  * @author user
  */
 public class inscription extends Bar {
+
+    String pphoto;
 
     public inscription() {
         super();
@@ -57,11 +63,14 @@ public class inscription extends Bar {
 
         Label MotdePasse = new Label("Mot de passe");
         TextField tmotdepasse = new TextField();
+        tmotdepasse.setConstraint(TextField.PASSWORD);
         c1.add(MotdePasse);
         c1.add(tmotdepasse);
 
         Label confirmermotdepasse = new Label("Confirmer Mot de passe");
         TextField tconf = new TextField();
+        tconf.setConstraint(TextField.PASSWORD);
+
         c1.add(confirmermotdepasse);
         c1.add(tconf);
 
@@ -81,13 +90,50 @@ public class inscription extends Bar {
 //        photoField.setEditable(false);
         selectPhoto.addActionListener((evt) -> {
             if (Dialog.show("Photo!", "une annonce avec des  photos est 10 fois plus visible", "app photo", "Gallerie") == false) {
-                Display.getInstance().openGallery((e) -> {
-                    if (e != null && e.getSource() != null) {
-                        String file = (String) e.getSource();
-                        // pphoto = file.substring(file.lastIndexOf('/') + 1);
-                        photoField.setText(file.substring(file.lastIndexOf('/') + 1));
+                Display.getInstance().openGallery(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt == null) {
+                            return;
+                        }
+                        String filename = (String) evt.getSource();
+
+                        if (Dialog.show("Send file?", filename, "OK", "Cancel")) {
+                            MultipartRequest req = new MultipartRequest();
+                            String endpoint = "http://localhost/pi/pi_dev/web/app_dev.php/uploadPhotoMobileProfil";
+                            System.out.println("endpoint  : " + endpoint);
+                            req.setUrl(endpoint);
+                            req.addArgument("message", "test");
+                            InputStream is = null;
+                            try {
+                                is = FileSystemStorage.getInstance().openInputStream(filename);
+                                req.addData("file", is, FileSystemStorage.getInstance().getLength(filename), "image/jpeg");
+                                req.setFilename("file", filename);//any unique name you want
+                                req.addResponseListener(new ActionListener<NetworkEvent>() {
+                                    @Override
+                                    public void actionPerformed(NetworkEvent evt) {
+                                        byte[] data = (byte[]) req.getResponseData();
+                                        String s = new String(data);
+                                        if (s.equals("ok")) {
+// entité = nom de la photo
+                                            System.out.println("SUCCESS");
+                                            String newfilename = filename.substring(filename.lastIndexOf("/") + 1, filename.length());
+                                            pphoto = filename.substring(filename.lastIndexOf('/') + 1);
+                                            photoField.setText("http://localhost/pi/pi_dev/web/uploads/images/" + filename.substring(filename.lastIndexOf('/') + 1));
+                                            // photoField.setText(filename);
+                                            pphoto = (newfilename);
+                                        }
+                                    }
+                                });
+                                NetworkManager.getInstance().addToQueue(req);
+                            } catch (IOException ioe) {
+                                ioe.printStackTrace();
+                            }
+                        }
                     }
+
                 }, Display.GALLERY_IMAGE);
+
             } else {
                 System.out.println("ici on va accerder à l'appareille photo");
             }

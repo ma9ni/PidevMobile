@@ -208,20 +208,10 @@ public class Loginn extends Bar {
 //          user.setAdresse(users.get("adresse").toString());
             user.setImage(users.get("image").toString());
             user.setUsername(users.get("username").toString());
-<<<<<<< HEAD
-               
-                          
-                ArrayList<String> UserRole = (ArrayList<String>) users.get("roles");
-                user.setRole(UserRole.get(0));
-               
-                
-            
-            
-            
-            
-=======
 
->>>>>>> e5903f043ca8a21883d8d6edb714c93ca1756b32
+            ArrayList<String> UserRole = (ArrayList<String>) users.get("roles");
+            user.setRole(UserRole.get(0));
+
             return user;
         } catch (IOException ex) {
         }

@@ -198,7 +198,7 @@ public class UsersServices {
     public int emailExiste(String Email) {
         a = 0;
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/loginMobile/" + Email + "");
+        con.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/loginMobile/" + Email + "");
         con.setHttpMethod("GET");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -213,38 +213,6 @@ public class UsersServices {
                 }
             }
         });
-<<<<<<< HEAD
-      
-      //  System.out.println("aaaaasd"+listEvenements);
-                NetworkManager.getInstance().addToQueueAndWait(con);
-                return a;
-
- }
- public int PseudoExiste(String Pseudo)
- {
-     int a =0;
-     ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/PseaudoExiste/"+Pseudo);
-       if (con.getResponseData()!=null) {
-           a=1;         
-     }
-                NetworkManager.getInstance().addToQueueAndWait(con);
-                return a;
-
- }
- public void inscription(User user ){
-     System.out.println("dfdsfdsf"+user.getEmail());
-     System.out.println("imagee :"+user.getImage());
-             ConnectionRequest req = new ConnectionRequest();
-             req.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/Inscription?username="
-                +user.getUsername()+"&password="+user.getPasword()+"&email="
-                +user.getEmail()+"&role="+user.getRole()+"&image="+user.getImage());
-       
-       //// System.out.println("1");
-       //req.setHttpMethod("GET");
-       System.out.println("1111111111"+req.getUrl());
-         req.addResponseListener((e) -> {
-=======
 
         //  System.out.println("aaaaasd"+listEvenements);
         NetworkManager.getInstance().addToQueueAndWait(con);
@@ -255,7 +223,7 @@ public class UsersServices {
     public int PseudoExiste(String Pseudo) {
         int a = 0;
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/PseaudoExiste/" + Pseudo);
+        con.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/PseaudoExiste/" + Pseudo);
         if (con.getResponseData() != null) {
             a = 1;
         }
@@ -266,16 +234,16 @@ public class UsersServices {
 
     public void inscription(User user) {
         System.out.println("dfdsfdsf" + user.getEmail());
+        System.out.println("imagee :" + user.getImage());
         ConnectionRequest req = new ConnectionRequest();
-        req.setUrl("http://localhost/pi_dev-master/web/app_dev.php/Inscription?username="
+        req.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/Inscription?username="
                 + user.getUsername() + "&password=" + user.getPasword() + "&email="
-                + user.getEmail() + "&role=" + user.getRole());
+                + user.getEmail() + "&role=" + user.getRole() + "&image=" + user.getImage());
 
         //// System.out.println("1");
         //req.setHttpMethod("GET");
         System.out.println("1111111111" + req.getUrl());
         req.addResponseListener((e) -> {
->>>>>>> e5903f043ca8a21883d8d6edb714c93ca1756b32
             System.out.println("1");
             String str = new String(req.getResponseData());
             System.out.println("22222222" + req.getUrl());
@@ -318,37 +286,31 @@ public class UsersServices {
         return user;
 
     }
-<<<<<<< HEAD
-         public void  recuperer_UserConecterParFAcebook(String username){
-              
-             ConnectionRequest req = new ConnectionRequest();
-        req.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/loginFacebookMobile/"+ username);
-             System.out.println("hedhaya il username "+username);
+
+    public void recuperer_UserConecterParFAcebook(String username) {
+
+        ConnectionRequest req = new ConnectionRequest();
+        req.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/loginFacebookMobile/" + username);
+        System.out.println("hedhaya il username " + username);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                                System.out.println("00000");
+                System.out.println("00000");
 
                 byte[] data = (byte[]) req.getResponseData();
                 String s = new String(data);
                 User user = RecupererUser(s);
                 System.out.println("1111");
                 User.setUserConncter(user);
-                    User.setIdOfConnectedUser(user.getId());
+                User.setIdOfConnectedUser(user.getId());
             }
         });
-                NetworkManager.getInstance().addToQueueAndWait(req);
+        NetworkManager.getInstance().addToQueueAndWait(req);
 
         //NetworkManager.getInstance().addToQueue(req);
-
-             
-         }
-         
-             public void showFacebookUser(String token) {
-=======
+    }
 
     public void showFacebookUser(String token) {
->>>>>>> e5903f043ca8a21883d8d6edb714c93ca1756b32
         ConnectionRequest req = new ConnectionRequest();
         req.setPost(false);
         req.setUrl("https://graph.facebook.com/v2.3/me");
@@ -365,7 +327,7 @@ public class UsersServices {
             ex.printStackTrace();
         }
         String name = (String) map.get("name");
-                 System.out.println("hedhaya il nom"+map.get("name"));
+        System.out.println("hedhaya il nom" + map.get("name"));
         d.dispose();
 
         User socialUser = new User();
@@ -401,14 +363,12 @@ public class UsersServices {
         User user = new User(name, name, name, "https://graph.facebook.com/v2.3/me/picture?access_token=" + token, "", "utilisateur");
 
         //System.out.println("SOCIAL USER : " + user);
-        
-                    recuperer_UserConecterParFAcebook(map.get("name")+"");
-                    
-                    
-                    System.out.println("hedhaya il user mt3 il facebook kanou mawjoud "+User.getUserConncter());
+        recuperer_UserConecterParFAcebook(map.get("name") + "");
+
+        System.out.println("hedhaya il user mt3 il facebook kanou mawjoud " + User.getUserConncter());
 
         if (User.getUserConncter() != null) {
-             Homegui acceuil = new Homegui();
+            Homegui acceuil = new Homegui();
             acceuil.getHi().show();
         } else {
             um.inscription(user);
