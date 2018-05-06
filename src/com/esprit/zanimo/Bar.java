@@ -14,7 +14,12 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.esprit.entities.animal;
+import com.esprit.gui.animal.Afficher_user_sos;
+import com.esprit.gui.animal.AjouterAnimal;
+import com.esprit.gui.animal.AjouterSos;
+import com.esprit.gui.animal.afficher_user_animals;
 import com.esprit.gui.animal.affichergui;
+import com.esprit.gui.animal.affichersos;
 
 import com.esprit.gui.users.AffichageProfessionnel;
 import com.esprit.gui.users.AjouterFs;
@@ -69,14 +74,51 @@ public class Bar {
                 hi.show();
             }
         });
-        
-                tb.addMaterialCommandToSideMenu("animal", FontImage.MATERIAL_HOME, new ActionListener() {
+
+        tb.addMaterialCommandToSideMenu("animal", FontImage.MATERIAL_HOME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 affichergui aj = new affichergui();
                 aj.getHi().show();
             }
         });
+        tb.addMaterialCommandToSideMenu("my animal", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                afficher_user_animals aj = new afficher_user_animals();
+                aj.getHi().show();
+            }
+        });
+        tb.addMaterialCommandToSideMenu("sos", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                affichersos aj = new affichersos();
+                aj.getHi().show();
+            }
+        });
+
+        tb.addMaterialCommandToSideMenu("ajouter animal", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                AjouterAnimal aj = new AjouterAnimal();
+                aj.getHi().show();
+            }
+        });
+        tb.addMaterialCommandToSideMenu("ajouter sos", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                AjouterSos aj = new AjouterSos();
+                aj.getHi().show();
+            }
+        });
+        tb.addMaterialCommandToSideMenu(" mysos", FontImage.MATERIAL_HOME, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Afficher_user_sos aj = new Afficher_user_sos();
+                aj.getHi().show();
+            }
+        });
+
     }
 
     public Form getHi() {
