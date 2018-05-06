@@ -24,6 +24,7 @@
     <image name="Button.press#borderTopR_1.png" type="multi"  />
     <image name="cal_left_arrow.png" type="multi"  />
     <image name="cal_right_arrow.png" type="multi"  />
+    <image name="car_14444.png"  />
     <image name="Check-Box_Normal.png" type="multi"  />
     <image name="Check-Box_Press.png" type="multi"  />
     <image name="combo.png" type="multi"  />
@@ -39,10 +40,15 @@
     <image name="Dialog.borderTopR_1.png" type="multi"  />
     <image name="facebookLoginButton.png"  />
     <image name="fb.png"  />
+    <image name="fb_title.png_veryHigh.png"  />
+    <image name="fbuser.jpg"  />
     <image name="googleLogin.png"  />
     <image name="img_bgr_side_bar_title.png"  />
     <image name="img_bgr_tile.png"  />
+    <image name="line.png"  />
+    <image name="login-background.jpg"  />
     <image name="login-fb.png"  />
+    <image name="medium.png"  />
     <image name="Menu.borderBottom_1.png" type="multi"  />
     <image name="Menu.borderBottomL_1.png" type="multi"  />
     <image name="Menu.borderBottomR_1.png" type="multi"  />
@@ -54,6 +60,7 @@
     <image name="Menu.borderTopR_1.png" type="multi"  />
     <image name="Radio_btn_Normal.png" type="multi"  />
     <image name="Radio_btn_Press.png" type="multi"  />
+    <image name="round-mask.png"  />
     <image name="Slider.borderTop_2.png_veryHigh.png" type="multi"  />
     <image name="Slider.borderTop_2.png_veryHigh_FULL.png" type="multi"  />
     <image name="Slider.borderTopL_2.png_veryHigh.png" type="multi"  />
@@ -757,4 +764,5 @@
         <border key="sel#border" type="empty" />
         <val key="transparency" value="0" />
     </theme>
+    <image name="veryhigh.png"  />
 </resource>

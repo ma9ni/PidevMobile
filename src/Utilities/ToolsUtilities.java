@@ -11,6 +11,7 @@ package Utilities;
  */
 public class ToolsUtilities {
 
+    public static String UrlAhmedMakniImage = "http://localhost/pi_dev-master/";
     public static String UrlAhmedMakni = "http://localhost/pi_dev-master/web/app_dev.php/";
     public static String UrlHoussem = "http://localhost/pi/pi_dev/web/app_dev.php/";
 

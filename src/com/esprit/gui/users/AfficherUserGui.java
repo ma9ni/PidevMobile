@@ -43,6 +43,8 @@ import java.util.Map;
 import com.codename1.googlemaps.MapContainer;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
+import com.codename1.ui.table.TableLayout;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -58,6 +60,7 @@ public class AfficherUserGui extends Bar {
     private Label note;
     private Label commentaire;
     private Label Username;
+    private Label datte;
     private TextField giveNote;
     private TextField giveComme;
     private EncodedImage enc;
@@ -102,27 +105,17 @@ public class AfficherUserGui extends Bar {
     }
 
     private Slider createStarRankSlider() {
+        Slider starRank = new Slider();
+        starRank.setEditable(true);
+        starRank.setMinValue(0);
+        starRank.setMaxValue(5);
         Font fnt = Font.createTrueTypeFont("native:MainLight", "native:MainLight").
-        derive(convertToPixels(5, true), Font.STYLE_PLAIN);
+        derive(Display.getInstance().convertToPixels(5, true), Font.STYLE_PLAIN);
         Style s = new Style(0xffff33, 0, fnt, (byte) 0);
         Image fullStar = FontImage.createMaterial(FontImage.MATERIAL_STAR, s).toImage();
         s.setOpacity(100);
         s.setFgColor(0);
         Image emptyStar = FontImage.createMaterial(FontImage.MATERIAL_STAR, s).toImage();
-        Slider starRank = new Slider() {
-            @Override
-            public void refreshTheme(boolean merge) {
-                // special case when changing the theme while the dialog is showing
-                initStarRankStyle(getSliderEmptySelectedStyle(), emptyStar);
-                initStarRankStyle(getSliderEmptyUnselectedStyle(), emptyStar);
-                initStarRankStyle(getSliderFullSelectedStyle(), fullStar);
-                initStarRankStyle(getSliderFullUnselectedStyle(), fullStar);
-            }
-        };
-
-        starRank.setEditable(true);
-        starRank.setMinValue(0);
-        starRank.setMaxValue(5);
         initStarRankStyle(starRank.getSliderEmptySelectedStyle(), emptyStar);
         initStarRankStyle(starRank.getSliderEmptyUnselectedStyle(), emptyStar);
         initStarRankStyle(starRank.getSliderFullSelectedStyle(), fullStar);
@@ -133,9 +126,11 @@ public class AfficherUserGui extends Bar {
 
     public AfficherUserGui() {
         super();
+        Container hii = new Container(new TableLayout(2, 2));
         Slider rate = createStarRankSlider();
         Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container C4 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container mapContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
         listUsers = serviceUsers.getList2Profes();
         for (User uu : listUsers) {
@@ -166,13 +161,23 @@ public class AfficherUserGui extends Bar {
             for (Rating r : listRating) {
                 Username = new Label();
                 System.out.println("USername :" + r.getIdUser().getUsername());
-                Username.setText(r.getIdUser().getUsername() + " :");
+
                 commentaire = new Label();
-                commentaire.setText(r.getCommentaire());
+//                datte = new Label();
+                if (r.getCommentaire() != null) {
+                    Username.setText(r.getIdUser().getUsername() + " :");
+                    commentaire.setText(r.getCommentaire());
+//                    SimpleDateFormat formeter = new SimpleDateFormat("yyy-MM-dd");
+//                    String datString = formeter.format(r.getDatenote());
+//                    datte.setText(datString);
+                }
+
                 Container C3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
 
                 C3.add(Username);
                 C3.add(commentaire);
+//                C3.add(datte);
+
                 C4.add(C3);
                 System.out.println("1111111");
                 System.out.println("2222222222222");
@@ -180,6 +185,7 @@ public class AfficherUserGui extends Bar {
                 somme = somme + r.getNote();
                 System.out.println("somme1:" + somme);
             }
+
             System.out.println("size" + listRating.size());
             noteuser = somme / listRating.size();
             rate.setProgress((int) noteuser);
@@ -213,24 +219,29 @@ public class AfficherUserGui extends Bar {
 
         C2.add(gouvlab);
         C2.add(C4);
+
         C2.add(note);
-        C2.add(giveNote);
+//        C2.add(giveNote);
         C2.add(giveComme);
         C2.add(addnote);
 
-        rate.addActionListener((ActionListener) (ActionEvent evt1) -> {
-            giveNote.setText("Note:" + rate.getProgress());
-            System.out.println("rating :" + rate.getProgress());
-        });
-
-        C2.add(rate);
+//        rate.addActionListener((ActionListener) (ActionEvent evt1) -> {
+//            giveNote.setText("Note:" + rate.getProgress());
+//            System.out.println("rating :" + rate.getProgress());
+//        });
+//        C2.add(rate);
         addnote.addActionListener((evt) -> {
-            User userCo = new User(9);
-            Rating r = new Rating(rate.getProgress(), giveComme.getText(), null, u, userCo);
-            System.out.println("rating:::" + r);
-            rs.ajoutRating(r);
-            AfficherUserGui aj = new AfficherUserGui();
-            aj.getHi().show();
+            if (User.getIdOfConnectedUser() == 0) {
+                Dialog.show("Erreur", "veuillez vous connecter", "Ok", null);
+            } else {
+                Dialog.show("Confirmation", "Vous Avez Attribuer La Note de " + rate.getProgress() + " à M/Mme " + u.getUsername(), "OK", null);
+//                User userCo = new User(9);
+                Rating r = new Rating(rate.getProgress(), giveComme.getText(), null, u, User.getUserConncter());
+                System.out.println("rating:::" + r);
+                rs.ajoutRating(r);
+                AfficherUserGui aj = new AfficherUserGui();
+                aj.getHi().show();
+            }
         });
         this.hi.getToolbar()
         .addCommandToOverflowMenu("retour", null, (evt) -> {
@@ -240,21 +251,30 @@ public class AfficherUserGui extends Bar {
         );
         this.hi.setTitle("afficher " + u.getUsername());
         hi.add(C2);
-        Style s = new Style();
-        s.setFgColor(0x8A2BE2);
-        s.setBgTransparency(0);
-        FontImage markerImg = FontImage.createMaterial(FontImage.MATERIAL_PLACE, s, Display.getInstance().convertToPixels(1));
-        MapContainer cn = new MapContainer();
+        try {
 
-        cn.zoom(getCoords(u.getGouvernorat()), 18);
+            Style s = new Style();
+            s.setFgColor(0x8A2BE2);
+            s.setBgTransparency(0);
+            FontImage markerImg = FontImage.createMaterial(FontImage.MATERIAL_PLACE, s, Display.getInstance().convertToPixels(1));
+            MapContainer cn = new MapContainer();
 
-        cn.setCameraPosition(getCoords(u.getGouvernorat())); // since the image is iin the jar this is unlikely
-        cn.addMarker(EncodedImage.createFromImage(markerImg, false), getCoords(u.getGouvernorat()), "Hi marker", "Optional long description", new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Dialog.show("Marker Clicked!", "You clicked the marker", "OK", null);
-            }
-        });
-        C2.add(cn);
+            cn.zoom(getCoords(u.getGouvernorat()), 18);
+
+            cn.setCameraPosition(getCoords(u.getGouvernorat())); // since the image is iin the jar this is unlikely
+            cn.addMarker(EncodedImage.createFromImage(markerImg, false), getCoords(u.getGouvernorat()), "Hi marker", "Optional long description", new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    Dialog.show("Marker Clicked!", "You clicked the marker", "OK", null);
+                }
+            });
+
+            hi.add(rate);
+            mapContainer.add(cn);
+            hi.add(mapContainer);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+//        C2.add(cn);
         System.out.println(
         "ussserAhmeeeeeeeeeeeeed" + u);
     }

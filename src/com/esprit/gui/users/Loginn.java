@@ -49,6 +49,7 @@ public class Loginn extends Bar {
 
         TextField login = new TextField();
         TextField password = new TextField();
+        password.setConstraint(TextField.PASSWORD);
         Button Bconnexion = new Button("connexion");
         Button BIncsciption = new Button("inscription");
         Bconnexion.addActionListener(x -> {

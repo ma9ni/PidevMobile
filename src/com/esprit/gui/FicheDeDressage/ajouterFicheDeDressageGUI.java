@@ -138,9 +138,9 @@ public class ajouterFicheDeDressageGUI extends Bar {
         C3.add(btn);
         btn.addActionListener((evt) -> {
             float note = (obeissance.getProgress() + interception.getProgress() + accompagnement.getProgress() + displine.getProgress()) / 4;
-            User u = new User(8);
+//            User u = new User(8);
             animal a = anim.get(cmb.getSelectedIndex());
-            FicheDeDressage ficheDeDressage = new FicheDeDressage(u, specialiteField.getText(), Float.parseFloat("" + displine.getProgress()), Float.parseFloat("" + obeissance.getProgress()), Float.parseFloat("" + accompagnement.getProgress()), Float.parseFloat("" + interception.getProgress()), note, datedebut.getDate(), datefin.getDate(), a, 1);
+            FicheDeDressage ficheDeDressage = new FicheDeDressage(User.getUserConncter(), specialiteField.getText(), Float.parseFloat("" + displine.getProgress()), Float.parseFloat("" + obeissance.getProgress()), Float.parseFloat("" + accompagnement.getProgress()), Float.parseFloat("" + interception.getProgress()), note, datedebut.getDate(), datefin.getDate(), a, 1);
             System.out.println("Fiche De Dressage" + ficheDeDressage);
             ficheDeDressageService.ajoutfichedeDressage(ficheDeDressage);
         });

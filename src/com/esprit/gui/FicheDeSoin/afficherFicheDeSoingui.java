@@ -7,6 +7,7 @@ package com.esprit.gui.FicheDeSoin;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
+import com.codename1.io.Storage;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Image;
@@ -43,6 +44,7 @@ public class afficherFicheDeSoingui extends Bar {
             } catch (IOException ex) {
 
             }
+
             Image i = (URLImage.createToStorage(enc, t.getId_animal().getNom(), "http://localhost/pi_dev-master/web/upload/images/" + t.getId_animal().getImage() + "", URLImage.RESIZE_SCALE));
 
             ImageViewer img2 = new ImageViewer(i.fill(120, 130));
