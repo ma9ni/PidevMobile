@@ -15,7 +15,8 @@ import java.util.Date;
 public class animal {
 
     private int id;
-    private int id_membre;
+    private User id_membre;
+
     private String nom;
     private String nomproprietaire;
     private String description;
@@ -23,8 +24,41 @@ public class animal {
     private Date datedenaissance;
     private String race;
     private String image;
+    private int id_membree;
 
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+
+    public animal() {
+    }
+
+    public int getId_membree() {
+        return id_membree;
+    }
+
+    public void setId_membree(int id_membree) {
+        this.id_membree = id_membree;
+    }
+
+    public animal(int id, User id_membre, String nom, String nomproprietaire, String description, String sexe, Date datedenaissance, String race, String image) {
+        this.id = id;
+        this.id_membre = id_membre;
+        this.nom = nom;
+        this.nomproprietaire = nomproprietaire;
+        this.description = description;
+        this.sexe = sexe;
+        this.datedenaissance = datedenaissance;
+        this.race = race;
+        this.image = image;
+    }
+
+    public animal(int id, String nom, String description) {
+        this.id = id;
+
+        this.nom = nom;
+
+        this.description = description;
+
+    }
 
     public int getId() {
         return id;
@@ -35,11 +69,11 @@ public class animal {
         this.id = id;
     }
 
-    public int getId_membre() {
+    public User getId_membre() {
         return id_membre;
     }
 
-    public void setId_membre(int id_membre) {
+    public void setId_membre(User id_membre) {
         this.id_membre = id_membre;
     }
 
@@ -75,14 +109,6 @@ public class animal {
         this.sexe = sexe;
     }
 
-    public Date getDatedenaissance() {
-        return datedenaissance;
-    }
-
-    public void setDatedenaissance(Date datedenaissance) {
-        this.datedenaissance = datedenaissance;
-    }
-
     public String getRace() {
         return race;
     }
@@ -107,30 +133,18 @@ public class animal {
         this.formater = formater;
     }
 
-    public animal() {
+    public Date getDatedenaissance() {
+        return datedenaissance;
+    }
+
+    public void setDatedenaissance(Date datedenaissance) {
+        this.datedenaissance = datedenaissance;
+
     }
 
     public animal(String nom, String nomproprietaire, String image) {
         this.nom = nom;
         this.nomproprietaire = nomproprietaire;
-        this.image = image;
-    }
-
-    public animal(int id, String nom, String description) {
-        this.id = id;
-        this.nom = nom;
-        this.description = description;
-    }
-
-    public animal(int id, int id_membre, String nom, String nomproprietaire, String description, String sexe, Date datedenaissance, String race, String image) {
-        this.id = id;
-        this.id_membre = id_membre;
-        this.nom = nom;
-        this.nomproprietaire = nomproprietaire;
-        this.description = description;
-        this.sexe = sexe;
-        this.datedenaissance = datedenaissance;
-        this.race = race;
         this.image = image;
     }
 

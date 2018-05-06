@@ -5,6 +5,7 @@
  */
 package com.esprit.services.rating;
 
+import Utilities.ToolsUtilities;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -26,7 +27,7 @@ public class RatingService {
 
     public void ajoutRating(Rating ra) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost/pi_dev-master/web/app_dev.php/newRating?" + "&note=" + ra.getNote() + "&commentaire=" + ra.getCommentaire() + "&idUser=" + ra.getIdUser().getId() + "&idMembreCO=" + ra.getIdMembreCO().getId();
+        String Url = ToolsUtilities.UrlAhmedMakni + "newRating?" + "&note=" + ra.getNote() + "&commentaire=" + ra.getCommentaire() + "&idUser=" + ra.getIdUser().getId() + "&idMembreCO=" + ra.getIdMembreCO().getId();
         con.setUrl(Url);
 
         System.out.println("tt");
@@ -107,7 +108,7 @@ public class RatingService {
 
     public ArrayList<Rating> getList2(int id) {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/ratingmobileUser/" + id);
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "ratingmobileUser/" + id);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

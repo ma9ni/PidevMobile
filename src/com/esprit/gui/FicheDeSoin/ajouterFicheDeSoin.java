@@ -121,8 +121,8 @@ public class ajouterFicheDeSoin extends Bar {
             Date d = p.getDate();
             animal a = anim.get(cmb.getSelectedIndex());
             System.out.println("animaaaaaaaaaaaaaaaaaaal" + cmb.getSelectedIndex());
-            User u = new User(8);
-            fds = new FicheDeSoin(u, Textobservation.getText(), TextMedicament.getText(), d, a, null, 1);
+//            User u = new User(8);
+            fds = new FicheDeSoin(User.getUserConncter(), Textobservation.getText(), TextMedicament.getText(), d, a, null, 1);
             System.out.println("ficheeeeeeeeeeeee" + fds);
             fsDeSoinService.ajoutfichedeSoin(fds);
         });

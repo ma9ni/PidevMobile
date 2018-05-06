@@ -5,6 +5,7 @@
  */
 package com.esprit.gui.users;
 
+import Utilities.ToolsUtilities;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -36,58 +37,66 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author user
  */
-public class Loginn extends Bar{
+public class Loginn extends Bar {
+
     public static Login loginMethode;
-public   Button loginWFace;
-public   Button loginWG;
+    public Button loginWFace;
+    public Button loginWG;
+
     public Loginn() {
 
         super();
-                                UsersServices Us= new UsersServices();
+        UsersServices Us = new UsersServices();
 
         TextField login = new TextField();
         TextField password = new TextField();
-        Button  Bconnexion = new Button("connexion");
-        Button  BIncsciption = new Button("inscription");
-        Bconnexion.addActionListener(x->{
 
-        
-             ConnectionRequest req = new ConnectionRequest();
-        req.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/loginMobile/" + login.getText() + "");
-        req.setHttpMethod("GET");
-        req.addResponseListener(new ActionListener<NetworkEvent>() {
-            @Override
-            public void actionPerformed(NetworkEvent evt) {
-                byte[] data = (byte[]) req.getResponseData();
-                String s = new String(data);
-                User user = RecupererUser(s);
-                String pwd = StringUtil.replaceAll(user.getPasword(), "$2y", "$2a");
-                if (BCrypt.checkpw(password.getText(), pwd) == true) {
-                    System.out.println("SUCCESS " + password.getText());
-                   User.setUserConncter(user);
-                    User.setIdOfConnectedUser(user.getId());
-                    
-                    Homegui b = new Homegui();
-                    b.getHi().show();
-                } else {
-                    System.out.println("FAILED");
-                    Dialog.show("Erreur", "Merci de vérifier vos paramétres de connexion", "Ok", null);
+        password.setConstraint(TextField.PASSWORD);
+
+        Button Bconnexion = new Button("connexion");
+        Button BIncsciption = new Button("inscription");
+        Bconnexion.addActionListener(x -> {
+
+            ConnectionRequest req = new ConnectionRequest();
+
+            req.setUrl("http://localhost/pi_dev-master/web/app_dev.php/loginMobile/" + login.getText() + "");
+
+            req.setUrl(ToolsUtilities.UrlAhmedMakni + "loginMobile/" + login.getText() + "");
+
+            req.setHttpMethod("GET");
+            req.addResponseListener(new ActionListener<NetworkEvent>() {
+                @Override
+                public void actionPerformed(NetworkEvent evt) {
+                    byte[] data = (byte[]) req.getResponseData();
+                    String s = new String(data);
+                    User user = RecupererUser(s);
+                    String pwd = StringUtil.replaceAll(user.getPasword(), "$2y", "$2a");
+                    if (BCrypt.checkpw(password.getText(), pwd) == true) {
+                        System.out.println("SUCCESS " + password.getText());
+                        User.setUserConncter(user);
+                        User.setIdOfConnectedUser(user.getId());
+
+                        Homegui b = new Homegui();
+                        b.getHi().show();
+                    } else {
+                        System.out.println("FAILED");
+                        Dialog.show("Erreur", "Merci de vérifier vos paramétres de connexion", "Ok", null);
+                    }
                 }
-            }
+            });
+            NetworkManager.getInstance().addToQueue(req);
+
         });
-        NetworkManager.getInstance().addToQueue(req);
-            
+
+        BIncsciption.addActionListener((evt) -> {
+            inscription i = new inscription();
+            i.getHi().show();
         });
-       
-       BIncsciption.addActionListener((evt) -> {
-          inscription i = new inscription();
-          i.getHi().show();
-       });
-       int deviceWidht = Display.getInstance().getDisplayWidth();
-       int deviceheight = Display.getInstance().getDisplayHeight();
-       //Social actionbuttons
+        int deviceWidht = Display.getInstance().getDisplayWidth();
+        int deviceheight = Display.getInstance().getDisplayHeight();
+        //Social actionbuttons
         try {
-            loginWFace = new Button(EncodedImage.create("/facebookLoginButton.png").scaled(deviceWidht, deviceheight/8));
+            loginWFace = new Button(EncodedImage.create("/facebookLoginButton.png").scaled(deviceWidht, deviceheight / 8));
         } catch (IOException ex) {
         }
         //loginWFace.setUIID("LoginButton");
@@ -106,7 +115,7 @@ public   Button loginWG;
                 fb.setClientId(clientId);
                 fb.setRedirectURI(redirectURI);
                 fb.setClientSecret(clientSecret);
-                 loginMethode = fb;
+                loginMethode = fb;
 
                 fb.setCallback(new LoginListener(LoginListener.FACEBOOK));
                 if (!fb.isUserLoggedIn()) {
@@ -118,7 +127,7 @@ public   Button loginWG;
             }
         });
         try {
-            loginWG = new Button(EncodedImage.create("/googleLogin.png").scaled(deviceWidht, deviceheight/8));
+            loginWG = new Button(EncodedImage.create("/googleLogin.png").scaled(deviceWidht, deviceheight / 8));
         } catch (IOException ex) {
         }
         //loginWG.setUIID("LoginButton");
@@ -140,22 +149,21 @@ public   Button loginWG;
                 if (!gc.isUserLoggedIn()) {
                     gc.doLogin();
                 } else {
-                   // Us.showGoogleUser(gc.getAccessToken().getToken());
+                    // Us.showGoogleUser(gc.getAccessToken().getToken());
                 }
             }
         });
         Container Butt = new Container(BoxLayout.y());
-       this.hi.add(login);
+        this.hi.add(login);
         this.hi.add(password);
         this.hi.add(Bconnexion);
         this.hi.add(BIncsciption);
         Butt.add(loginWFace);
         Butt.add(loginWG);
         this.hi.add(Butt);
-        
-        
+
     }
-    
+
     public User authentification(String json) {
         User user = new User();
 
@@ -164,17 +172,15 @@ public   Button loginWG;
             JSONParser j = new JSONParser();
 
             Map<String, Object> etudiants = j.parseJSON(new CharArrayReader(json.toCharArray()));
-                  
+
             Map<String, Object> Mapprofil = (Map<String, Object>) etudiants.get("User");
-              System.out.println(Mapprofil);
+            System.out.println(Mapprofil);
             if (Mapprofil != null) {
-                
+
                 user.setId(Integer.parseInt(Mapprofil.get("id").toString()));
                 user.setPasword(Mapprofil.get("password").toString());
                 user.setUsername(Mapprofil.get("username").toString());
                 System.out.println(Mapprofil.get("username").toString());
-                
-                  
 
             }
         } catch (IOException ex) {
@@ -183,26 +189,26 @@ public   Button loginWG;
 
     }
 
-        public User RecupererUser(String json) {
-                    User user = new User();
+    public User RecupererUser(String json) {
+        User user = new User();
 
-            try {
+        try {
             JSONParser j = new JSONParser();
             Map<String, Object> users;
             users = j.parseJSON(new CharArrayReader(json.toCharArray()));
-            
 
-            System.out.println("111111"+users);
-                if (users.isEmpty()) {
-                    return null;
-                }
-                int userId = Integer.valueOf(users.get("id").toString().substring(0, users.get("id").toString().indexOf('.')));
-                 user.setId(userId);
-                user.setPasword(users.get("password").toString());
+            System.out.println("111111" + users);
+            if (users.isEmpty()) {
+                return null;
+            }
+            int userId = Integer.valueOf(users.get("id").toString().substring(0, users.get("id").toString().indexOf('.')));
+            user.setId(userId);
+            user.setPasword(users.get("password").toString());
             user.setEmail(users.get("email").toString());
 //          user.setAdresse(users.get("adresse").toString());
             user.setImage(users.get("image").toString());
             user.setUsername(users.get("username").toString());
+<<<<<<< HEAD
                
                           
                 ArrayList<String> UserRole = (ArrayList<String>) users.get("roles");
@@ -213,11 +219,14 @@ public   Button loginWG;
             
             
             
+=======
+
+>>>>>>> e5903f043ca8a21883d8d6edb714c93ca1756b32
             return user;
         } catch (IOException ex) {
         }
 
-                    return user;
+        return user;
 
     }
 

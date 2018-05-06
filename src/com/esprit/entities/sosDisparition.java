@@ -13,21 +13,19 @@ import java.util.Date;
  * @author salah
  */
 public class sosDisparition {
-    
-    
+
     private int id;
     private String nomproprietaire;
-    private String description ;
+    private String description;
     private Date Date;
-    private String race ;
+    private String race;
     private int num_tel;
     private String adresse;
-      private int id_membre;
-      private String image ;
-      
-    
-    
-    
+    private User id_membre;
+    private String image;
+    private String lieu;
+    private String sexe;
+
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 
     public int getId() {
@@ -86,11 +84,11 @@ public class sosDisparition {
         this.adresse = adresse;
     }
 
-    public int getId_membre() {
+    public User getId_membre() {
         return id_membre;
     }
 
-    public void setId_membre(int id_membre) {
+    public void setId_membre(User id_membre) {
         this.id_membre = id_membre;
     }
 
@@ -110,10 +108,31 @@ public class sosDisparition {
         this.formater = formater;
     }
 
+    public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
+    }
+
+    public String getSexe() {
+        return sexe;
+    }
+
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
+    }
+
     public sosDisparition() {
     }
 
-    public sosDisparition(int id, String nomproprietaire, String description, Date Date, String race, int num_tel, String adresse, int id_membre, String image) {
+    @Override
+    public String toString() {
+        return "sosDisparition{" + "id=" + id + ", nomproprietaire=" + nomproprietaire + ", description=" + description + ", Date=" + Date + ", race=" + race + ", num_tel=" + num_tel + ", adresse=" + adresse + ", id_membre=" + id_membre + ", image=" + image + ", lieu=" + lieu + ", sexe=" + sexe + ", formater=" + formater + '}';
+    }
+
+    public sosDisparition(int id, String nomproprietaire, String description, Date Date, String race, int num_tel, String adresse, User id_membre, String image, String lieu, String sexe) {
         this.id = id;
         this.nomproprietaire = nomproprietaire;
         this.description = description;
@@ -123,14 +142,8 @@ public class sosDisparition {
         this.adresse = adresse;
         this.id_membre = id_membre;
         this.image = image;
+        this.lieu = lieu;
+        this.sexe = sexe;
     }
 
-    @Override
-    public String toString() {
-        return "sosDisparition{" + "id=" + id + ", nomproprietaire=" + nomproprietaire + ", description=" + description + ", Date=" + Date + ", race=" + race + ", num_tel=" + num_tel + ", adresse=" + adresse + ", id_membre=" + id_membre + ", image=" + image + ", formater=" + formater + '}';
-    }
-    
-    
-    
-    
 }

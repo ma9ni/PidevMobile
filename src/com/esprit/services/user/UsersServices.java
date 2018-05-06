@@ -31,7 +31,9 @@ import org.mindrot.jbcrypt.BCrypt;
  * @author makni
  */
 public class UsersServices {
- int a;
+
+    int a;
+
     public ArrayList<User> getListUser(String json) {
 
         ArrayList<User> listEtudiants = new ArrayList<>();
@@ -87,7 +89,7 @@ public class UsersServices {
                 User e = new User();
 
                 // System.out.println(obj.get("id"));
-                 float id = Float.parseFloat(obj.get("id").toString());
+                float id = Float.parseFloat(obj.get("id").toString());
                 String nomevnt = obj.get("gouvernorat").toString();
                 /*  float nbp = Float.parseFloat(obj.get("nombredeplaces").toString());
                 float nbpr = Float.parseFloat(obj.get("nombredesplacesrestante").toString());
@@ -135,7 +137,7 @@ public class UsersServices {
 
                 System.out.println(id);
                  */
-                  e.setId((int) id);
+                e.setId((int) id);
                 e.setGouvernorat(nomevnt);
                 e.setImage(img);
                 /*  e.setNombredeplaces((int)nbp);
@@ -145,15 +147,14 @@ public class UsersServices {
                 e.setLieu(lieu);
                 e.setDate(date);
                 e.setDatefin(datefin);
-*/                e.setEmail(email);
+                 */ e.setEmail(email);
 
                 //e.setId(Integer.parseInt(obj.get("id").toString().trim()));
                 // e.setEtat(obj.get("state").toString());
                 //e.setNom(obj.get("name").toString());
-
-              //  float id = Float.parseFloat(obj.get("id").toString());
+                //  float id = Float.parseFloat(obj.get("id").toString());
                 e.setId((int) id);
-               // String nomevnt = obj.get("gouvernorat").toString();
+                // String nomevnt = obj.get("gouvernorat").toString();
                 int numtel = Integer.parseInt(obj.get("numTel").toString());
                 //String img = obj.get("image").toString();
                 e.setAdresse(obj.get("adresse").toString());
@@ -190,28 +191,29 @@ public class UsersServices {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listUsers;
     }
-   
+
 // public boolean isEmail(String s) {
 //       return s.matches("(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)*\\@(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)+");
 //    }
- public int emailExiste(String Email){
-      a =0;
-     ConnectionRequest con = new ConnectionRequest();
- con.setUrl("http://localhost/pi/pi_dev/web/app_dev.php/loginMobile/" + Email + "");
+    public int emailExiste(String Email) {
+        a = 0;
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/loginMobile/" + Email + "");
         con.setHttpMethod("GET");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
                 Loginn u = new Loginn();
- byte[] data = (byte[]) con.getResponseData();
+                byte[] data = (byte[]) con.getResponseData();
                 String s = new String(data);
                 User user = u.RecupererUser(s);
-        if (user!=null) {
-           a=1;
-         
-     }
+                if (user != null) {
+                    a = 1;
+
+                }
             }
         });
+<<<<<<< HEAD
       
       //  System.out.println("aaaaasd"+listEvenements);
                 NetworkManager.getInstance().addToQueueAndWait(con);
@@ -242,58 +244,81 @@ public class UsersServices {
        //req.setHttpMethod("GET");
        System.out.println("1111111111"+req.getUrl());
          req.addResponseListener((e) -> {
+=======
+
+        //  System.out.println("aaaaasd"+listEvenements);
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return a;
+
+    }
+
+    public int PseudoExiste(String Pseudo) {
+        int a = 0;
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/PseaudoExiste/" + Pseudo);
+        if (con.getResponseData() != null) {
+            a = 1;
+        }
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return a;
+
+    }
+
+    public void inscription(User user) {
+        System.out.println("dfdsfdsf" + user.getEmail());
+        ConnectionRequest req = new ConnectionRequest();
+        req.setUrl("http://localhost/pi_dev-master/web/app_dev.php/Inscription?username="
+                + user.getUsername() + "&password=" + user.getPasword() + "&email="
+                + user.getEmail() + "&role=" + user.getRole());
+
+        //// System.out.println("1");
+        //req.setHttpMethod("GET");
+        System.out.println("1111111111" + req.getUrl());
+        req.addResponseListener((e) -> {
+>>>>>>> e5903f043ca8a21883d8d6edb714c93ca1756b32
             System.out.println("1");
             String str = new String(req.getResponseData());
-             System.out.println("22222222"+req.getUrl());
-             System.out.println("333333333"+str);
+            System.out.println("22222222" + req.getUrl());
+            System.out.println("333333333" + str);
             User.setUserConncter(user);
-         User.setIdOfConnectedUser(3);
-                    Homegui b = new Homegui();
-                    b.getHi().show(); 
+            User.setIdOfConnectedUser(3);
+            Homegui b = new Homegui();
+            b.getHi().show();
         });
-         //System.out.println("3");
-         NetworkManager.getInstance().addToQueueAndWait(req);
+        //System.out.println("3");
+        NetworkManager.getInstance().addToQueueAndWait(req);
 
+    }
 
-     
- }
-         public User RecupererUser(String json) {
-                    User user = new User();
+    public User RecupererUser(String json) {
+        User user = new User();
 
-            try {
+        try {
             JSONParser j = new JSONParser();
             Map<String, Object> users;
             users = j.parseJSON(new CharArrayReader(json.toCharArray()));
-            
 
-            System.out.println("111111"+users);
-                if (users.isEmpty()) {
-                    return null;
-                }
-                int userId = Integer.valueOf(users.get("id").toString().substring(0, users.get("id").toString().indexOf('.')));
-                 user.setId(userId);
-                user.setPasword(users.get("password").toString());
+            System.out.println("111111" + users);
+            if (users.isEmpty()) {
+                return null;
+            }
+            int userId = Integer.valueOf(users.get("id").toString().substring(0, users.get("id").toString().indexOf('.')));
+            user.setId(userId);
+            user.setPasword(users.get("password").toString());
             user.setEmail(users.get("email").toString());
 //            user.setAdresse(users.get("adresse").toString());
             user.setImage(users.get("image").toString());
             user.setRole(users.get("roles").toString());
             user.setUsername(users.get("username").toString());
-               
-                          
 
-               
-                
-            
-            
-            
-            
             return user;
         } catch (IOException ex) {
         }
 
-                    return user;
+        return user;
 
     }
+<<<<<<< HEAD
          public void  recuperer_UserConecterParFAcebook(String username){
               
              ConnectionRequest req = new ConnectionRequest();
@@ -320,6 +345,10 @@ public class UsersServices {
          }
          
              public void showFacebookUser(String token) {
+=======
+
+    public void showFacebookUser(String token) {
+>>>>>>> e5903f043ca8a21883d8d6edb714c93ca1756b32
         ConnectionRequest req = new ConnectionRequest();
         req.setPost(false);
         req.setUrl("https://graph.facebook.com/v2.3/me");
@@ -350,13 +379,13 @@ public class UsersServices {
             List<String> tokenzed = StringUtil.tokenize(name, " ");
             System.out.println("tokenzed = " + tokenzed);
             //socialUser.setNom(tokenzed.get(0));
-           // socialUser.setPrenom(tokenzed.get(1));
+            // socialUser.setPrenom(tokenzed.get(1));
         } catch (Exception ex) {
 
         }
 
         try {
-           // socialUser.setSocialid((String) map.get("id"));
+            // socialUser.setSocialid((String) map.get("id"));
         } catch (Exception ex) {
 
         }
@@ -382,7 +411,7 @@ public class UsersServices {
              Homegui acceuil = new Homegui();
             acceuil.getHi().show();
         } else {
-            um.inscription(user); 
+            um.inscription(user);
         }
 
         //invoke Social Sign iN
@@ -474,6 +503,4 @@ public class UsersServices {
 //        userForm.show();
 //         */
 //    }
-
-
 }
