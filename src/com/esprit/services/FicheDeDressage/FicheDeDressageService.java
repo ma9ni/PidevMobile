@@ -5,6 +5,7 @@
  */
 package com.esprit.services.FicheDeDressage;
 
+import Utilities.ToolsUtilities;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -12,6 +13,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.esprit.entities.FicheDeDressage;
+import com.esprit.entities.User;
 import com.esprit.entities.animal;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -38,7 +40,7 @@ public class FicheDeDressageService {
         String datdebu = formater.format(ta.getDateDebut());
         String datfin = formater.format(ta.getDateFin());
 
-        String Url = "http://localhost/pi_dev-master/web/app_dev.php/ajouterfichededress?" + "&specialite=" + ta.getSpecialite() + "&id_membre=" + ta.getId_membre().getId() + "&id_animal=" + ta.getId_animal().getId() + "&accompagnement=" + ta.getAccompagnement() + "&obeissance=" + ta.getObeissance() + "&displine=" + ta.getDispline() + "&interception=" + ta.getInterception() + "&noteTotale=" + ta.getNoteTotal() + "&dateDebut=" + datdebu + "&dateFin=" + datfin;
+        String Url = ToolsUtilities.UrlAhmedMakni + "ajouterfichededress?" + "&specialite=" + ta.getSpecialite() + "&id_membre=" + ta.getId_membre().getId() + "&id_animal=" + ta.getId_animal().getId() + "&accompagnement=" + ta.getAccompagnement() + "&obeissance=" + ta.getObeissance() + "&displine=" + ta.getDispline() + "&interception=" + ta.getInterception() + "&noteTotale=" + ta.getNoteTotal() + "&dateDebut=" + datdebu + "&dateFin=" + datfin;
         con.setUrl(Url);
 
         System.out.println("tt");
@@ -119,7 +121,7 @@ public class FicheDeDressageService {
 
     public ArrayList<FicheDeDressage> getList2FicheDeDressages() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/ficheDeDressage/12");
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "ficheDeDressage/" + User.getUserConncter().getId());
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -138,7 +140,7 @@ public class FicheDeDressageService {
         String datdebu = formater.format(ta.getDateDebut());
         String datfin = formater.format(ta.getDateFin());
 
-        String Url = "http://localhost/pi_dev-master/web/app_dev.php/modifierfichededress?" + "id=" + ta.getId() + "&specialite=" + ta.getSpecialite() + "&accompagnement=" + ta.getAccompagnement() + "&obeissance=" + ta.getObeissance() + "&displine=" + ta.getDispline() + "&interception=" + ta.getInterception() + "&noteTotale=" + ta.getNoteTotal() + "&dateDebut=" + datdebu + "&dateFin=" + datfin;
+        String Url = ToolsUtilities.UrlAhmedMakni + "modifierfichededress?" + "id=" + ta.getId() + "&specialite=" + ta.getSpecialite() + "&accompagnement=" + ta.getAccompagnement() + "&obeissance=" + ta.getObeissance() + "&displine=" + ta.getDispline() + "&interception=" + ta.getInterception() + "&noteTotale=" + ta.getNoteTotal() + "&dateDebut=" + datdebu + "&dateFin=" + datfin;
         con.setUrl(Url);
 
         System.out.println("tt");
@@ -156,7 +158,7 @@ public class FicheDeDressageService {
     public void supprimerficheDeDressage(FicheDeDressage ta) {
 
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/dellficheDeDressage/" + ta.getId());
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "dellficheDeDressage/" + ta.getId());
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
