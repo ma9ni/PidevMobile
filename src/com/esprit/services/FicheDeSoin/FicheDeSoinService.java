@@ -5,6 +5,7 @@
  */
 package com.esprit.services.FicheDeSoin;
 
+import Utilities.ToolsUtilities;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -12,6 +13,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.esprit.entities.FicheDeSoin;
+import com.esprit.entities.User;
 import com.esprit.entities.animal;
 import com.esprit.services.animal.animalservices;
 import java.io.IOException;
@@ -38,7 +40,7 @@ public class FicheDeSoinService {
 
         String datdebu = formater.format(ta.getProchainRDV());
 
-        String Url = "http://localhost/pi_dev-master/web/app_dev.php/newfiche?" + "&observation=" + ta.getObservation() + "&medicament=" + ta.getMedicament() + "&dateCreation=" + ta.getDateCreation() + "&prochainRDV=" + datdebu + "&etat=" + ta.getEtat() + "&id_animal=" + ta.getId_animal().getId() + "&id_membre=" + ta.getId_membre().getId();
+        String Url = ToolsUtilities.UrlAhmedMakni + "newfiche?" + "&observation=" + ta.getObservation() + "&medicament=" + ta.getMedicament() + "&dateCreation=" + ta.getDateCreation() + "&prochainRDV=" + datdebu + "&etat=" + ta.getEtat() + "&id_animal=" + ta.getId_animal().getId() + "&id_membre=" + ta.getId_membre().getId();
         con.setUrl(Url);
 
         System.out.println("tt");
@@ -126,7 +128,7 @@ public class FicheDeSoinService {
 
     public ArrayList<FicheDeSoin> getList2() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/ficheDeSoin/8");
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "ficheDeSoin/" + User.getUserConncter().getId());
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -175,7 +177,7 @@ public class FicheDeSoinService {
 
     public ArrayList<animal> getListanimal2() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/animallle");
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "animallle");
         con.addResponseListener((NetworkEvent evt) -> {
             animalservices ser = new animalservices();
             listanimal = ser.getListTask(new String(con.getResponseData()));
@@ -190,7 +192,7 @@ public class FicheDeSoinService {
 
         String datdebu = formater.format(ta.getProchainRDV());
 
-        String Url = "http://localhost/pi_dev-master/web/app_dev.php/modifierfiche?" + "id=" + ta.getId() + "&observation=" + ta.getObservation() + "&medicament=" + ta.getMedicament() + "&prochainRDV=" + datdebu;
+        String Url = ToolsUtilities.UrlAhmedMakni + "modifierfiche?" + "id=" + ta.getId() + "&observation=" + ta.getObservation() + "&medicament=" + ta.getMedicament() + "&prochainRDV=" + datdebu;
         con.setUrl(Url);
 
         System.out.println("tt");
@@ -208,7 +210,7 @@ public class FicheDeSoinService {
     public void supprimerficheDeDressage(FicheDeSoin ta) {
 
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/dellficheDesoin/" + ta.getId());
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "dellficheDesoin/" + ta.getId());
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

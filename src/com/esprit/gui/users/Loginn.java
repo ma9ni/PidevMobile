@@ -5,6 +5,7 @@
  */
 package com.esprit.gui.users;
 
+import Utilities.ToolsUtilities;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -48,12 +49,19 @@ public class Loginn extends Bar {
 
         TextField login = new TextField();
         TextField password = new TextField();
+
+        password.setConstraint(TextField.PASSWORD);
+
         Button Bconnexion = new Button("connexion");
         Button BIncsciption = new Button("inscription");
         Bconnexion.addActionListener(x -> {
 
             ConnectionRequest req = new ConnectionRequest();
+
             req.setUrl("http://localhost/pi_dev-master/web/app_dev.php/loginMobile/" + login.getText() + "");
+
+            req.setUrl(ToolsUtilities.UrlAhmedMakni + "loginMobile/" + login.getText() + "");
+
             req.setHttpMethod("GET");
             req.addResponseListener(new ActionListener<NetworkEvent>() {
                 @Override
