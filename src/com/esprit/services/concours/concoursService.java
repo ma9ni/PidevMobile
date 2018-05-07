@@ -68,8 +68,8 @@ public class concoursService {
                 c.setRace(obj.get("race").toString());
                 float capacite = Float.parseFloat(obj.get("capacite").toString());
                 c.setCapacite((int) capacite);
-                float nbpar = Float.parseFloat(obj.get("nbparticipant").toString());
-                c.setNbparticipant((int) nbpar);
+//                float nbpar = Float.parseFloat(obj.get("nbparticipant").toString());
+//                c.setNbparticipant((int) nbpar);
 
                 Map<String, Object> datedebutjson = (Map<String, Object>) obj.get("dateDebut");
                 float datefloat = Float.parseFloat(datedebutjson.get("timestamp").toString());

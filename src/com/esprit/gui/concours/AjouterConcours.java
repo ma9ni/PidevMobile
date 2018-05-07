@@ -123,29 +123,20 @@ public class AjouterConcours extends Bar {
         Button btnValider = new Button("Valider");
         btnValider.addActionListener((evt) -> {
 
-            if (titreArea.getText().length() == 0 || raceArea.getText().length() == 0) {
-                Dialog.show("Erreur", "tous les champs doivent etres remplis", "ok", null);
+            concours temp = new concours();
+            temp.setTitre(titreArea.getText());
+            temp.setType(typeCombo.getSelectedItem().toString());
+            temp.setCapacite(nb);
+            temp.setRace(raceArea.getText());
+            temp.setDateDebut(ddPicker.getDate());
+            temp.setDateFin(dfPicker.getDate());
+            concoursService tempService = new concoursService();
+            tempService.ajoutConcours(temp);
+            //al la fin de notre action de l'ajout du concours un dialog va s'afficher et nous allons rediger l'utilisateur a la liste des concours
+            Dialog.show("felicitation", "le concours est ajouter et il est desormé visible pour tt utilisateur", "OK", null);
+            AffichageConcours inte = new AffichageConcours();
+            inte.getHi().show();
 
-            } else {
-
-                if ((int) (ddPicker.getDate().getTime() - dfPicker.getDate().getTime()) >= 0) {
-                    Dialog.show("erreur", "******", "ok", null);
-                } else {
-                    concours temp = new concours();
-                    temp.setTitre(titreArea.getText());
-                    temp.setType(typeCombo.getSelectedItem().toString());
-                    temp.setCapacite(nb);
-                    temp.setRace(raceArea.getText());
-                    temp.setDateDebut(ddPicker.getDate());
-                    temp.setDateFin(dfPicker.getDate());
-                    concoursService tempService = new concoursService();
-                    tempService.ajoutConcours(temp);
-                    //al la fin de notre action de l'ajout du concours un dialog va s'afficher et nous allons rediger l'utilisateur a la liste des concours
-                    Dialog.show("felicitation", "le concours est ajouter et il est desormé visible pour tt utilisateur", "OK", null);
-                    AffichageConcours inte = new AffichageConcours();
-                    inte.getHi().show();
-                }
-            }
         });
         Container btnContainer = new Container(new BoxLayout(BoxLayout.X_AXIS));
         btnContainer.add(btnValider);
