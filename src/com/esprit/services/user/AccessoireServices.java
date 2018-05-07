@@ -5,6 +5,7 @@
  */
 package com.esprit.services.user;
 
+import Utilities.ToolsUtilities;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -67,7 +68,7 @@ public class AccessoireServices {
 
     public ArrayList<Accessoire> getList2() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/mobile_accessoires");
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "mobile_accessoires");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -82,15 +83,15 @@ public class AccessoireServices {
     public void ajouterAccessoire(Accessoire accessoire) {
         ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/pi_dev-master/web/app_dev.php/mobile_ajouter_accessoire"
-                + "?nom=" + accessoire.getNom()
-                + "&description=" + accessoire.getDescription()
-                + "&prix=" + accessoire.getPrix()
-                + "&categorie=" + accessoire.getCategorie()
-                + "&validite=" + accessoire.getValiditePublication()
-                + "&photo=" + accessoire.getPhoto()
-                + "&user=" + accessoire.getIdMembre()
-                + "&qte=" + accessoire.getQteStock()
-                + "&qte=" + accessoire.getQteStock();
+        + "?nom=" + accessoire.getNom()
+        + "&description=" + accessoire.getDescription()
+        + "&prix=" + accessoire.getPrix()
+        + "&categorie=" + accessoire.getCategorie()
+        + "&validite=" + accessoire.getValiditePublication()
+        + "&photo=" + accessoire.getPhoto()
+        + "&user=" + accessoire.getIdMembre()
+        + "&qte=" + accessoire.getQteStock()
+        + "&qte=" + accessoire.getQteStock();
         con.setUrl(Url);
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());
@@ -225,15 +226,15 @@ public class AccessoireServices {
     public void modifierAccessoire(Accessoire accessoire) {
         ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/pi_dev-master/web/app_dev.php/mobile_modifier_annonces/"
-                + accessoire.getId()
-                + "?nom=" + accessoire.getNom()
-                + "&description=" + accessoire.getDescription()
-                + "&prix=" + accessoire.getPrix()
-                + "&categorie=" + accessoire.getCategorie()
-                + "&validite=" + accessoire.getValiditePublication()
-                + "&user=" + accessoire.getIdMembre()
-                + "&qte=" + accessoire.getQteStock()
-                + "&qte=" + accessoire.getQteStock();
+        + accessoire.getId()
+        + "?nom=" + accessoire.getNom()
+        + "&description=" + accessoire.getDescription()
+        + "&prix=" + accessoire.getPrix()
+        + "&categorie=" + accessoire.getCategorie()
+        + "&validite=" + accessoire.getValiditePublication()
+        + "&user=" + accessoire.getIdMembre()
+        + "&qte=" + accessoire.getQteStock()
+        + "&qte=" + accessoire.getQteStock();
         con.setUrl(Url);
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());

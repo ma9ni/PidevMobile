@@ -29,7 +29,11 @@ import com.esprit.gui.users.*;
 import com.esprit.gui.FicheDeDressage.afficherFicheDeDressageGUI;
 import com.esprit.gui.FicheDeSoin.afficherFicheDeSoingui;
 import com.esprit.gui.animal.affichergui;
+import com.esprit.gui.concours.AffichageConcours;
+import com.esprit.gui.concours.AjouterConcours;
+import com.esprit.gui.concours.ParticiperConcours;
 import com.esprit.gui.home.Homegui;
+import com.esprit.gui.home.Statistiques;
 
 import com.esprit.gui.users.AffichageProfessionnel;
 import com.esprit.gui.users.AjouterFs;
@@ -99,6 +103,24 @@ public class Bar {
             });
 
         } else {
+
+            final Command addCommand = new Command("Ajouter Concours") {
+                public void actionPerformed(ActionEvent evt) {
+                    AjouterConcours ajjConcours = new AjouterConcours();
+                    ajjConcours.getHi().show();
+                }
+            };
+
+            hi.addCommand(addCommand);
+
+            final Command afficherConCommand = new Command("Afficher Concours user") {
+                public void actionPerformed(ActionEvent evt) {
+                    ParticiperConcours ajjConcours = new ParticiperConcours();
+                    ajjConcours.getHi().show();
+                }
+            };
+
+            hi.addCommand(afficherConCommand);
             hi.getToolbar().addCommandToOverflowMenu("déconnexion", null, (evt) -> {
                 User.setIdOfConnectedUser(0);
                 Homegui aj = new Homegui();
@@ -126,8 +148,8 @@ public class Bar {
 
         final Command ProduitsCommand = new Command("Produits") {
             public void actionPerformed(ActionEvent evt) {
-                AffichageProfessionnel aj = new AffichageProfessionnel();
-                aj.getHi().show();
+                ListeAccessoires ajouterAccessoires = new ListeAccessoires();
+                ajouterAccessoires.getHi().show();
             }
         };
 
@@ -153,8 +175,8 @@ public class Bar {
 
         final Command ConcoursCommand = new Command("Concours") {
             public void actionPerformed(ActionEvent evt) {
-                AjouterAccessoire ajouterAccessoire = new AjouterAccessoire();
-                ajouterAccessoire.getHi().show();
+                AffichageConcours affichageConcours = new AffichageConcours();
+                affichageConcours.getHi().show();
             }
         };
 
@@ -191,6 +213,24 @@ public class Bar {
         };
 
         hi.addCommand(AnimalCommand);
+
+        final Command FAQCommand = new Command("F.A.Q") {
+            public void actionPerformed(ActionEvent evt) {
+                FaqClient faq = new FaqClient();
+                faq.getHi().show();
+            }
+        };
+
+        hi.addCommand(FAQCommand);
+
+        final Command AffStatCommand = new Command("Afficher Stat Concours") {
+            public void actionPerformed(ActionEvent evt) {
+                Statistiques faq = new Statistiques();
+                faq.createPieChartForm().show();
+            }
+        };
+
+        hi.addCommand(AffStatCommand);
 
     }
 

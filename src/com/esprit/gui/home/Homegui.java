@@ -10,6 +10,7 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.plaf.UIManager;
+import com.esprit.gui.users.ListeAccessoires;
 import com.esprit.zanimo.Bar;
 
 /**
@@ -21,8 +22,8 @@ public class Homegui extends Bar {
     public Homegui() {
 
         super();
-        Label l = new Label("ddddddddd");
-        this.hi.add(l);
+        ListeAccessoires sss = new ListeAccessoires();
+        this.hi = sss.getHi();
     }
 
 }
