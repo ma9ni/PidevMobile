@@ -65,10 +65,9 @@ public class AffichageProfessionnel extends Bar {
         lb = new SpanLabel("aaaaaaahmeeeedaaaaaa");
 //        lb.setText("" + serviceUsers.getList2().get(0).getEmail());
 
-        System.out.println("" + serviceUsers.getList2Profes().get(0).getGouvernorat());
+//        System.out.println("" + serviceUsers.getList2Profes().get(0).getGouvernorat());
         // lb.setText("" + serviceTask.getList2().get(0).getId());
 //        hi.add(lb);
-
         for (int i = 0; i < serviceUsers.getList2Profes().size(); i++) {
             if (serviceUsers.getList2Profes().get(i).getRole().equals("ROLE_VETE")) {
                 ListVet.add(serviceUsers.getList2Profes().get(i));
@@ -89,8 +88,6 @@ public class AffichageProfessionnel extends Bar {
                 this.hi.add(find);
                 affiche(ListVet);
                 this.hi.refreshTheme();
-
-
 
             } else {
 

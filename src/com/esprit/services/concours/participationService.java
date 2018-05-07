@@ -73,7 +73,7 @@ public class participationService {
                 c.setId((int) id);
                 c.setRace(race);
                 float idmem = Float.parseFloat(animalmembre.get("id").toString());
-                c.setId_membre((int) idmem);
+                c.setId_membree((int) idmem);
                 c.setNom(nom);
                 System.out.println(c);
                 listanimal.add(c);

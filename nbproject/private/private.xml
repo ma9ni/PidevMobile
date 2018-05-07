@@ -3,8 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/services/Adoption/AdoptionService.java</file>
-            <file>file:/F:/netbeansProject/PidevMobile/src/com/esprit/services/animal/animalservices.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/entities/sosDisparition.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/Reclamation.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/AffichageUneAnnonceAdoptionGui.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/entities/User.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/AffichageAdoptionGui.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/Adoption/ContactAnnonceur.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/services/user/UsersServices.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/zanimo/Bar.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/AffichageProfessionnel.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/gui/users/Loginn.java</file>
+            <file>file:/C:/Users/user/Desktop/pi/mobile/PidevMobile/src/com/esprit/services/FicheDeDressage/FicheDeDressageService.java</file>
         </group>
     </open-files>
 </project-private>

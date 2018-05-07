@@ -29,6 +29,7 @@ import com.esprit.gui.home.Homegui;
 import com.esprit.services.user.UsersServices;
 import com.esprit.zanimo.Bar;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -58,7 +59,7 @@ public class Loginn extends Bar {
 
             ConnectionRequest req = new ConnectionRequest();
 
-            req.setUrl("http://localhost/pi_dev-master/web/app_dev.php/loginMobile/" + login.getText() + "");
+            req.setUrl(ToolsUtilities.UrlAhmedMakni + "/loginMobile/" + login.getText() + "");
 
             req.setUrl(ToolsUtilities.UrlAhmedMakni + "loginMobile/" + login.getText() + "");
 
@@ -204,10 +205,12 @@ public class Loginn extends Bar {
             user.setId(userId);
             user.setPasword(users.get("password").toString());
             user.setEmail(users.get("email").toString());
-//            user.setAdresse(users.get("adresse").toString());
+//          user.setAdresse(users.get("adresse").toString());
             user.setImage(users.get("image").toString());
-            user.setRole(users.get("roles").toString());
             user.setUsername(users.get("username").toString());
+
+            ArrayList<String> UserRole = (ArrayList<String>) users.get("roles");
+            user.setRole(UserRole.get(0));
 
             return user;
         } catch (IOException ex) {

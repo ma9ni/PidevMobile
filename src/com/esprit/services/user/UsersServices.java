@@ -5,6 +5,7 @@
  */
 package com.esprit.services.user;
 
+import Utilities.ToolsUtilities;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
@@ -179,7 +180,7 @@ public class UsersServices {
 
     public ArrayList<User> getList2Profes() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/usersmobile");
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "usersmobile");
         // con.setHttpMethod("get");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -198,7 +199,7 @@ public class UsersServices {
     public int emailExiste(String Email) {
         a = 0;
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/loginMobile/" + Email + "");
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "loginMobile/" + Email + "");
         con.setHttpMethod("GET");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -223,7 +224,7 @@ public class UsersServices {
     public int PseudoExiste(String Pseudo) {
         int a = 0;
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pi_dev-master/web/app_dev.php/PseaudoExiste/" + Pseudo);
+        con.setUrl(ToolsUtilities.UrlAhmedMakni + "PseaudoExiste/" + Pseudo);
         if (con.getResponseData() != null) {
             a = 1;
         }
@@ -234,10 +235,11 @@ public class UsersServices {
 
     public void inscription(User user) {
         System.out.println("dfdsfdsf" + user.getEmail());
+        System.out.println("imagee :" + user.getImage());
         ConnectionRequest req = new ConnectionRequest();
-        req.setUrl("http://localhost/pi_dev-master/web/app_dev.php/Inscription?username="
-                + user.getUsername() + "&password=" + user.getPasword() + "&email="
-                + user.getEmail() + "&role=" + user.getRole());
+        req.setUrl(ToolsUtilities.UrlAhmedMakni + "Inscription?username="
+        + user.getUsername() + "&password=" + user.getPasword() + "&email="
+        + user.getEmail() + "&role=" + user.getRole() + "&image=" + user.getImage());
 
         //// System.out.println("1");
         //req.setHttpMethod("GET");
@@ -286,6 +288,29 @@ public class UsersServices {
 
     }
 
+    public void recuperer_UserConecterParFAcebook(String username) {
+
+        ConnectionRequest req = new ConnectionRequest();
+        req.setUrl(ToolsUtilities.UrlAhmedMakni + "loginFacebookMobile/" + username);
+        System.out.println("hedhaya il username " + username);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                System.out.println("00000");
+
+                byte[] data = (byte[]) req.getResponseData();
+                String s = new String(data);
+                User user = RecupererUser(s);
+                System.out.println("1111");
+                User.setUserConncter(user);
+                User.setIdOfConnectedUser(user.getId());
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+
+        //NetworkManager.getInstance().addToQueue(req);
+    }
+
     public void showFacebookUser(String token) {
         ConnectionRequest req = new ConnectionRequest();
         req.setPost(false);
@@ -303,11 +328,12 @@ public class UsersServices {
             ex.printStackTrace();
         }
         String name = (String) map.get("name");
+        System.out.println("hedhaya il nom" + map.get("name"));
         d.dispose();
 
         User socialUser = new User();
         try {
-            socialUser.setUsername(name);
+            recuperer_UserConecterParFAcebook(name);
         } catch (Exception ex) {
 
         }
@@ -335,12 +361,14 @@ public class UsersServices {
 
         // check existance before socialSignIn
         UsersServices um = new UsersServices();
-        User user = um.RecupererUser(name);
+        User user = new User(name, name, name, "https://graph.facebook.com/v2.3/me/picture?access_token=" + token, "", "utilisateur");
 
-        System.out.println("SOCIAL USER : " + user);
-        if (user != null) {
-            User.setUserConncter(user);
-            User.setIdOfConnectedUser(user.getId());
+        //System.out.println("SOCIAL USER : " + user);
+        recuperer_UserConecterParFAcebook(map.get("name") + "");
+
+        System.out.println("hedhaya il user mt3 il facebook kanou mawjoud " + User.getUserConncter());
+
+        if (User.getUserConncter() != null) {
             Homegui acceuil = new Homegui();
             acceuil.getHi().show();
         } else {

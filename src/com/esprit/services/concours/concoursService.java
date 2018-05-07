@@ -23,7 +23,7 @@ public class concoursService {
 
     public void ajoutTask(concours c) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://41.226.11.243:10004/tasks/" + c.getTitre() + "/" + c.getRace();
+        String Url = ToolsUtilities.UrlAhmedMakni + "tasks/" + c.getTitre() + "/" + c.getRace();
         con.setUrl(Url);
 
         System.out.println("tt");

@@ -8,6 +8,7 @@ package com.esprit.gui.home;
 import com.codename1.components.ImageViewer;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.plaf.UIManager;
 import com.esprit.gui.users.ListeAccessoires;
@@ -22,8 +23,10 @@ public class Homegui extends Bar {
     public Homegui() {
 
         super();
+
         ListeAccessoires sss = new ListeAccessoires();
         this.hi = sss.getHi();
+
     }
 
 }

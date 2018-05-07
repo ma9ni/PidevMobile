@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.esprit.zanimo;
 
 import Utilities.ToolsUtilities;
@@ -28,7 +23,10 @@ import com.esprit.gui.users.*;
 
 import com.esprit.gui.FicheDeDressage.afficherFicheDeDressageGUI;
 import com.esprit.gui.FicheDeSoin.afficherFicheDeSoingui;
+import com.esprit.gui.animal.Afficher_user_sos;
+import com.esprit.gui.animal.afficher_user_animals;
 import com.esprit.gui.animal.affichergui;
+import com.esprit.gui.animal.affichersos;
 import com.esprit.gui.concours.AffichageConcours;
 import com.esprit.gui.concours.AjouterConcours;
 import com.esprit.gui.concours.ParticiperConcours;
@@ -104,6 +102,21 @@ public class Bar {
 
         } else {
 
+            final Command sosMyCommand = new Command("My S.O.S Disparition") {
+                public void actionPerformed(ActionEvent evt) {
+                    Afficher_user_sos aj = new Afficher_user_sos();
+                    aj.getHi().show();
+                }
+            };
+            hi.addCommand(sosMyCommand);
+            final Command MyanimalCommand = new Command("mes Animaux ") {
+                public void actionPerformed(ActionEvent evt) {
+                    afficher_user_animals aj = new afficher_user_animals();
+                    aj.getHi().show();
+                }
+            };
+            hi.addCommand(MyanimalCommand);
+
             final Command addCommand = new Command("Ajouter Concours") {
                 public void actionPerformed(ActionEvent evt) {
                     AjouterConcours ajjConcours = new AjouterConcours();
@@ -166,7 +179,7 @@ public class Bar {
 
         final Command AdoptionCommand = new Command("Adption") {
             public void actionPerformed(ActionEvent evt) {
-                AjouterAccessoire ajouterAccessoire = new AjouterAccessoire();
+                AffichageAdoptionGui ajouterAccessoire = new AffichageAdoptionGui();
                 ajouterAccessoire.getHi().show();
             }
         };
@@ -207,12 +220,19 @@ public class Bar {
 
         final Command AnimalCommand = new Command("Animal") {
             public void actionPerformed(ActionEvent evt) {
-                afficherFicheDeDressageGUI aj = new afficherFicheDeDressageGUI();
+                affichergui aj = new affichergui();
                 aj.getHi().show();
             }
         };
 
-        hi.addCommand(AnimalCommand);
+        final Command sosCommand = new Command("S.O.S Disparition") {
+            public void actionPerformed(ActionEvent evt) {
+                affichersos aj = new affichersos();
+                aj.getHi().show();
+            }
+        };
+
+        hi.addCommand(sosCommand);
 
         final Command FAQCommand = new Command("F.A.Q") {
             public void actionPerformed(ActionEvent evt) {

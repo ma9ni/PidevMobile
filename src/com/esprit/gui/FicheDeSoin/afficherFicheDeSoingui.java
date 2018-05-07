@@ -88,7 +88,7 @@ public class afficherFicheDeSoingui extends Bar {
         //        // lb = new SpanLabel("aaaaaaahmeeeedaaaaaa");
         //        lb.setText("Animal :" + serviceTask.getList2().get(0).getId_animal().getNom());
         //        hi.add(lb);
-        System.out.println("" + serviceTask.getList2().get(0).getId_animal().getNom());
+//        System.out.println("" + serviceTask.getList2().get(0).getId_animal().getNom());
 
         /*/*/    }
 

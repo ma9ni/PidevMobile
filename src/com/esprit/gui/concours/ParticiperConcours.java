@@ -71,7 +71,8 @@ public class ParticiperConcours extends Bar {
 //            ls = sc.getList2();
             System.out.println("ccccccccccccccccccc" + User.getIdOfConnectedUser());
             for (animal l : sc.getList2()) {
-                if (l.getId_membre() == User.getIdOfConnectedUser()) {
+
+                if (l.getId_membree() == User.getIdOfConnectedUser()) {
                     System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                     ls.add(l);
                 }
